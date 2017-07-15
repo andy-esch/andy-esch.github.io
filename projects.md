@@ -46,20 +46,20 @@ cc.map(layers=[Layer('acadia_regions'),
 
 See the full project at its GitHub repo: <https://github.com/CartoDB/cartoframes.git>.
 
-## Military Phonetic Alphabet Teacher
+## [](#phonetic-teacher)Military Phonetic Alphabet Teacher
 
 My last name is always hard to spell when I'm on the phone with my health insurance company or bank. I struggle to come up with good words for letters ("E as in Edward, S as in uhhh Sam, C as in Cheese, ..."). To make my life easier, I learned the military phonetic alphabet. While just writing the words and letters on some index cards, or using an online resource that does the digitial version, I decided to write a little Python program that allows me to use one of the many great language recongnition services so I can practice speaking instead of just having to type.
 
 The result is in my GitHub account: <https://github.com/andy-esch/phonetic-teacher/>. "Whikey Oscar Whiskey," you'll say!
 
 
-## andybot
+## [](#andybot)andybot
 
 I made a quick and dirty Slackbot to 'help making some tasks easier at work'. Obviously that didn't happen, but it was fun throwing together a slackbot anyway.
 
 See the project here: <https://github.com/andy-esch/andybot>
 
-## Honeymoon mapping
+## [](#honeymoon-mapping)Honeymoon mapping
 
 My honeymoon took my wife and me from Beijing, China to St. Petersburg, Russia by train. I tracked our GPS location using Moves App, and relied on geotagged images to put the pictures on the map. The result is here:
 
