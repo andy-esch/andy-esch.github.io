@@ -59,4 +59,10 @@ I made a quick and dirty Slackbot to 'help making some tasks easier at work'. Ob
 
 See the project here: <https://github.com/andy-esch/andybot>
 
+## Honeymoon mapping
+
+My honeymoon took my wife and me from Beijing, China to St. Petersburg, Russia by train. I tracked our GPS location using Moves App, and relied on geotagged images to put the pictures on the map. The result is here:
+
+<iframe src="https://team.carto.com/u/eschbacher/viz/3583a1d6-191f-11e5-9190-0e5e07bb5d8a/embed_map" width="640" height="480"></iframe>
+
 {% include footer.html %}

@@ -127,10 +127,32 @@ img {
   max-width:100%;
 }
 
+// clearfix and item-desc code inspired by
+//   https://stackoverflow.com/questions/11438910/how-to-display-items-side-by-side-without-using-tables
+.item-desc > figure {
+  float: right;
+  margin: 0 0 0 10px;
+  width: 264px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+figcaption {
+  font-size: 0.8em;
+}
+
 header {
   width:270px;
   float:left;
-  position:fixed;
+  //position:fixed;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
@@ -214,8 +236,9 @@ hr {
 footer {
   width:270px;
   float:left;
-  position:fixed;
+  position:relative;
   bottom:2px;
+  margin-top: 20px;
   -webkit-font-smoothing:subpixel-antialiased;
 }
 
