@@ -44,7 +44,7 @@ cc.map(layers=[Layer('acadia_regions'),
 # an embedded interactive map will display
 ```
 
-See the full project at its GitHub repo: <https://github.com/CartoDB/cartoframes.git>.
+See the full project at its GitHub repo: <https://github.com/CartoDB/cartoframes/>.
 
 ## [](#phonetic-teacher)Military Phonetic Alphabet Teacher
 

@@ -1,0 +1,104 @@
+[{
+	"name": "Nacis Annual Meeting",
+	"location": "Colorado Springs, CO",
+	"date": "2016-10-20",
+	"title": "Teaching New Cartography, with Rich Donohue",
+	"slides_url": "https://docs.google.com/presentation/d/1IYYQ722Ek7E5lrGgxkX0RasUX2wMJrJKmzP_TpgXTD0/edit",
+	"conf_url": "http://nacis.org/wp-content/uploads/2016/10/2016-NACIS-conf-program-0930.pdf"
+},
+{
+	"name": "Hacks/Hackers NYC",
+	"location": "New York City, NY",
+	"date": "2016-09-06",
+	"title": "Demo CARTO's <a href=\"https://carto.com/data-observatory/\">Data Observatory</a> that I helped build",
+	"slides_url": "",
+	"conf_url": "https://www.meetup.com/hacks-hackers-nyc/events/233272604/"
+},
+{
+	"name": "Hacks/Hackers NYC",
+	"location": "New York City, NY",
+	"date": "2015-08-11",
+	"title": "Building a map thinking machine: Demo <a href=\"https://carto.com/blog/one-click-mapping\">One-click Mapping</a> algorithm that I wrote",
+	"slides_url": "https://docs.google.com/presentation/d/1ccyervECNrkhGFX0k74rZdoN7oXT-pudUm4zU4K6Hx0/edit?usp=sharing",
+	"conf_url": "https://www.meetup.com/hacks-hackers-nyc/events/224032139/"
+},
+{
+	"name": "PGConf US",
+	"location": "Brooklyn, NY",
+	"date": "2016-04-18",
+	"title": "Taking PostgreSQL and Analytics to the Next Level with Python",
+	"slides_url": "https://docs.google.com/presentation/d/1XHLXU0PuDJv0Ryk6v7noiK2zRL6AzMY8y6BAmMPJ-ek/edit?usp=sharing",
+	"conf_url": "https://wiki.postgresql.org/wiki/PgConfUS_Talks_2016",
+	"description": "Work using PL/Python to leverage the Python ecosystem with analysis that uses data stored in PostgreSQL"
+},
+{
+	"name": "NY Open Statistical Programming Meetup",
+	"location": "New York, NY",
+	"date": "2016-07-11",
+	"title": "How the L Train Closure Affected Open Source Development of CartoDB",
+	"slides_url": "https://docs.google.com/presentation/d/1J4unz4rwTLWClF15zcc-QHmU3gNElLljrxdfFzRp6k8/edit?usp=sharing",
+	"conf_url": "https://www.meetup.com/nyhackr/events/232135172/",
+	"description": "Discussing the work my team did on the <a href=\"https://carto.com/blog/looking-at-the-l\">Looking at the L</a> project."
+},
+{
+	"name": "FOSS4G",
+	"location": "Seoul, South Korea",
+	"date": "2015-09-17",
+	"title": "Temporal Maps leading to new views in Spatial Analysis",
+	"slides_url": "https://docs.google.com/presentation/d/1zAXNGzvfNFRtd_KC7h-XAG8e-uroO5bgudj6m09YNR8/edit?usp=sharing",
+	"conf_url": "http://2015.foss4g.org/"
+},
+{
+	"name": "FOSS4G US",
+	"location": "San Francisco, CA",
+	"date": "2015-03-10",
+	"title": "Everyone's a Geographer",
+	"slides_url": "http://2015.foss4g-na.org/session/everyones-geographer.html",
+	"conf_url": "http://2015.foss4g-na.org/",
+	"description": "Discussing my work developing open source geospatial curriculum for CARTO's <a href=\"https://carto.com/academy\">Map Academy</a>"
+},
+{
+	"name": "FOSS4G",
+	"location": "Boston, MA",
+	"date": "2017-08-18",
+	"title": "Update on CARTO's Spatial Analytics Extension <a href=\"https://github.com/CartoDB/crankshaft/\">crankshaft</a>",
+	"slides_url": "",
+	"conf_url": "http://2017.foss4g.org/",
+	"description": "Discussion of the current state of <a href=\"https://github.com/CartoDB/crankshaft\">crankshaft</a>, CARTO's spatial analytic extension to PostgreSQL"
+},
+{
+	"name": "Nacis Annual Meeting",
+	"location": "Montréal, Canada",
+	"date": "2017-10-11",
+	"title": "Programmatic cartography in <a href=\"https://github.com/CartoDB/cartoframes/\">cartoframes</a>",
+	"slides_url": "",
+	"conf_url": "http://nacis.org/annual-meeting/current-meeting/",
+	"description": "Discussion of the cartographic techniques built into cartoframes to help data scientist create better cartographic outputs based on the type of data they are visualizing"
+},
+{
+	"name": "Texas GIS Forum",
+	"location": "Austin, Texas",
+	"date": "2015-10-22",
+	"title": "Teaching in an Open Source World",
+	"slides_url": "https://docs.google.com/presentation/d/1vh-fCJ_lXlMiC-j8N1PCJT4eoveYxvc4RX67nfHG6_8/edit#slide=id.p4",
+	"conf_url": "https://tnris.org/texas-gis-forum/2015/",
+	"description": "Presentation of my philosophy and work on education in the classroom as a physics educator and then at a startup that uses web mapping technologies"
+},
+{
+	"name": "NYC Salon",
+	"location": "New York, New York",
+	"date": "2016-07-10",
+	"title": "The Canarsie Closure and Carto: How a news leak altered the course of Carto's Development",
+	"slides_url": "https://docs.google.com/presentation/d/1SEDZcV8dvbBc93jxPV6Td89l-XR7Sp5sCQhpSTNR-nI/edit?usp=sharing",
+	"conf_url": "https://www.facebook.com/groups/NYCSalon",
+	"description": "Discussion about my team's work on the L Train closure. Talk started at 8th Ave L train and we looked at damage to the tunnel along the way. Once in Bushwick, I presented more in depth about our work and participants designed their own mitigation plan for what will happen for the 18 months the closure will be in effect."
+},
+{
+	"name": "Bar Camp Philly",
+	"location": "Philadelphia, PA",
+	"date": "2015-05-08",
+	"title": "Maps for Telling News Stories",
+	"slides_url": "https://docs.google.com/presentation/d/1igeyn7-IDouSKKeiJ9cBs-P5-RzKyzf9Dg0mhlPcvrQ/edit?usp=sharing",
+	"conf_url": "http://2015.barcampphilly.org/",
+	"description": "I share some of my favorite recent maps used for contextualizing the news."
+}]

@@ -42,7 +42,8 @@ a {
 
 a:hover, a:focus {
   color:#069;
-  font-weight: bold;
+  //font-weight: bold;
+  text-decoration: underline;
 }
 
 a small {
@@ -80,6 +81,42 @@ a:hover small {
 
 .username {
     margin-left: 0.3em;
+}
+
+.post-list {
+    margin: 0 0 0 15px;
+    padding: 0;
+    list-style: none;
+    > li {
+      margin-bottom: 20px;
+    }
+}
+
+.post-meta {
+  font-size: 14px;
+}
+
+.post-link {
+  display: block;
+}
+
+.post-info {
+  font-size: 0.9em;
+  font-style: normal;
+}
+
+.talk-list > dt {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.talk-title {
+  font-style: italic;
+}
+
+.talk-date {
+  font-weight: normal;
+  float: right;
 }
 
 blockquote {
