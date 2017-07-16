@@ -22,6 +22,22 @@ layout: default
 	<div>Presentations I've given at conferences, annual meetings, workshops at universities or bootcamps, and other educational work.</div>
 </div>
 
-## Blog
+## [Blog](blog.html)
 
-Blog -- coming soon
+<ul class="post-list">
+	{% for post in site.posts limit:5 %}
+		<li>
+			{% assign date_format = "%b %-d, %Y" %}
+			<span class="post-meta">
+				{{ post.date | date: date_format }}
+			</span>
+			<h3>
+				<a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+			</h3>
+		</li>
+	{% endfor %}
+</ul>
+
+<p class="post-info"><a href="/blog.html">See full listing of blog posts</a></p>
+
+<p class="post-info rss-subscribe">Subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
