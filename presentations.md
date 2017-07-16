@@ -6,11 +6,11 @@ layout: default
 {% assign past_events = site.data.talks | where_exp:"item", "item.date < curr_time" | sort: 'date' | reverse %}
 {% assign future_events = site.data.talks | where_exp:"item", "item.date >= curr_time" | sort: 'date' | reverse %}
 
-## Conferences and Annual Meetings 
+## [](#conferences)Conferences and Annual Meetings
 
-Talks given at conferences and annual meetings. Materials and recordings are given when available.
+A sample of talks given at conferences and annual meetings. Materials and recordings are given when available.
 
-### Upcoming
+### [](#upcoming-confs)Upcoming
 
 
 <dl class="talk-list">
@@ -27,7 +27,7 @@ Talks given at conferences and annual meetings. Materials and recordings are giv
 {% endfor %}
 </dl>
 
-### Past 
+### [](#past-confs)Past
 
 <dl class="talk-list">
 {% for event in past_events %}
@@ -43,16 +43,18 @@ Talks given at conferences and annual meetings. Materials and recordings are giv
 {% endfor %}
 </dl>
 
-## Workshops and Presentations
+## [](#workshops)Workshops and Presentations
 
-The following are workshops and presentations given, usually educational in nature.
+The following are workshops and presentations given, usually educational in nature. This is a placeholder until events are added.
 
 <dl class="talk-list">
+        <dt><a href="https://course.tc/catalog/course/ea5f4a23-743b-4e47-9eaf-6104fb45dad1">Mapping for Social Good at TechChange</a></dt>
+	<dd>Teach web mapping skills</dd>
 	<dt>New York City Data Science Academy</dt>
 	<dd>Introduction to using CARTO's Builder and APIs for data science work</dd>
 </dl>
 
-## CartoCamp
+## [](#cartocamp)CartoCamp
 
 I run a meetup called [CartoCamp](https://meetup.com/cartocamp/) that teaches skills tangential to web mapping and spatial data science.
 
