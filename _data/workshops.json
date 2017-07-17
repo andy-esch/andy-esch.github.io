@@ -15,20 +15,20 @@
 	"url_listing": "https://www.meetup.com/CartoCamp/events/226258909/"
 },
 {
-	"name": "CartoCamp NYC",
-	"location": "Brooklyn, NY",
-	"date": "2016-01-12",
-	"title": "Intermediate SQL Workshop",
-	"writeup": "https://gist.github.com/andy-esch/29140fa65e3e7c3f4559",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/226912325/"
+	"name": "TechChange: Technology for Data Visualization",
+	"location": "Online",
+	"date": "2016-12-08",
+	"title": "Visualizing Spatial Data on the Web",
+	"writeup": "https://gist.github.com/andy-esch/4c006e01834ebaf74e6a3826a20edd8f",
+	"url_listing": "https://www.techchange.org/online-courses/technology-for-data-visualization-and-analysis/"
 },
 {
-	"name": "CartoCamp NYC",
-	"location": "Brooklyn, NY",
-	"date": "2016-01-12",
-	"title": "Intermediate SQL Workshop",
-	"writeup": "https://gist.github.com/andy-esch/29140fa65e3e7c3f4559",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/226912325/"
+	"name": "NYC Data Science Academy",
+	"location": "New York, NY",
+	"date": "2017-02-07",
+	"title": "Spatial Data Science",
+	"writeup": "https://gist.github.com/andy-esch/9876e006a9b40db788a05b5824e07c41",
+	"url_listing": ""
 },
 {
 	"name": "CartoCamp NYC",

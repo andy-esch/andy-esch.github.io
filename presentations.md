@@ -38,8 +38,14 @@ A sample of talks given at conferences and annual meetings. Materials and record
         {% endif %}
 	- {{ event.location }} <span class="talk-date">{{ event.date | date_to_string }}</span>
     </dt>
-    <dd><span class="talk-title">{{ event.title }}</span> {% if event.slides_url != "" %} (<a href="{{ event.slides_url }}">slide deck</a>) {% endif %}</dd>
-    {% if event.description %}<dd>{{ event.description }}</dd>{% endif %}
+    <dd><span class="talk-title">{{ event.title }}</span>
+        {% if event.slides_url != "" %}
+	    (<a href="{{ event.slides_url }}">slide deck</a>)
+        {% endif %}
+    </dd>
+    {% if event.description %}
+        <dd>{{ event.description }}</dd>
+    {% endif %}
 {% endfor %}
 </dl>
 
@@ -48,10 +54,18 @@ A sample of talks given at conferences and annual meetings. Materials and record
 The following are workshops and presentations given, usually educational in nature. This is a placeholder until events are added.
 
 <dl class="talk-list">
-        <dt><a href="https://course.tc/catalog/course/ea5f4a23-743b-4e47-9eaf-6104fb45dad1">Mapping for Social Good at TechChange</a></dt>
-	<dd>Teach web mapping skills</dd>
-	<dt>New York City Data Science Academy</dt>
-	<dd>Introduction to using CARTO's Builder and APIs for data science work</dd>
+{% for workshop in site.data.workshops %}
+    <dt>{% if workshop.url_listing != "" %}
+          <a href="{{ workshop.url_listing }}">{{ workshop.name }}</a>
+        {% else %}
+	  {{ workshop.name }}
+        {% endif %}
+	- {{ workshop.location }} <span class="talk-date">{{ workshop.date | date_to_string }}</span>
+   <dd><span class="talk-title">{{ workshop.title }}</span>
+       {% if workshop.description %}
+           <dd>{{ workshop.description }}</dd>
+       {% endif %}
+{% endfor %}
 </dl>
 
 ## [](#cartocamp)CartoCamp
