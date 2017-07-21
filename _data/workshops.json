@@ -33,8 +33,16 @@
 {
 	"name": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
-	"date": "2016-01-12",
-	"title": "Intermediate SQL Workshop",
-	"writeup": "https://gist.github.com/andy-esch/29140fa65e3e7c3f4559",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/226912325/"
+	"date": "2016-12-16",
+	"title": "Explore Time and Space with SQL and PostGIS",
+	"writeup": "https://gist.github.com/andy-esch/068b8dcc9fa796d1b89dc091219adbf0",
+	"url_listing": "https://www.meetup.com/CartoCamp/events/235426549/"
+},
+{
+	"name": "CartoCamp NYC",
+	"location": "Brooklyn, NY",
+	"date": "2017-01-27",
+	"title": "Data Science with Maps",
+	"writeup": "",
+	"url_listing": "https://www.meetup.com/CartoCamp/events/236668763/"
 }]

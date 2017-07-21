@@ -51,20 +51,24 @@ A sample of talks given at conferences and annual meetings. Materials and record
 
 ## [](#workshops)Workshops and Presentations
 
+{% assign workshops = site.data.workshops | sort: 'date' | reverse %}
+
 The following are workshops and presentations given, usually educational in nature. This is a placeholder until events are added.
 
 <dl class="talk-list">
-{% for workshop in site.data.workshops %}
+{% for workshop in workshops %}
     <dt>{% if workshop.url_listing != "" %}
           <a href="{{ workshop.url_listing }}">{{ workshop.name }}</a>
         {% else %}
 	  {{ workshop.name }}
         {% endif %}
 	- {{ workshop.location }} <span class="talk-date">{{ workshop.date | date_to_string }}</span>
+   </dt>
    <dd><span class="talk-title">{{ workshop.title }}</span>
        {% if workshop.description %}
            <dd>{{ workshop.description }}</dd>
        {% endif %}
+   </dd>
 {% endfor %}
 </dl>
 
