@@ -1,48 +1,58 @@
 [{
-	"name": "CartoCamp NYC",
+	"venue": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
 	"date": "2016-01-12",
 	"title": "Intermediate SQL Workshop",
 	"writeup": "https://gist.github.com/andy-esch/29140fa65e3e7c3f4559",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/226912325/"
+	"venueListing": "https://www.meetup.com/CartoCamp/events/226912325/",
+    "skills": ["SQL", "data"]
 },
 {
-	"name": "CartoCamp NYC",
+	"venue": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
 	"date": "2015-11-10",
 	"title": "Election Mapping Bonanza",
 	"writeup": "https://gist.github.com/andy-esch/03a1c707ffafffbbd277",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/226258909/"
+	"venueListing": "https://www.meetup.com/CartoCamp/events/226258909/",
+    "skills": ["cartography", "SQL"]
+
 },
 {
-	"name": "TechChange: Technology for Data Visualization",
+	"venue": "TechChange: Technology for Data Visualization",
 	"location": "Online",
 	"date": "2016-12-08",
 	"title": "Visualizing Spatial Data on the Web",
 	"writeup": "https://gist.github.com/andy-esch/4c006e01834ebaf74e6a3826a20edd8f",
-	"url_listing": "https://www.techchange.org/online-courses/technology-for-data-visualization-and-analysis/"
+	"venueListing": "https://www.techchange.org/online-courses/technology-for-data-visualization-and-analysis/",
+    "skills": ["cartography", "data visualization"]
 },
 {
-	"name": "NYC Data Science Academy",
+	"venue": "NYC Data Science Academy",
 	"location": "New York, NY",
 	"date": "2017-02-07",
 	"title": "Spatial Data Science",
 	"writeup": "https://gist.github.com/andy-esch/9876e006a9b40db788a05b5824e07c41",
-	"url_listing": ""
+    "venueListing": "http://nycdatascience.com/",
+    "description": "Training an upcoming cohort of Data Scientists in spatial analysis and tools that can be integrated into the existing ecosystem of data science tools",
+    "skills": ["Python", "cartoframes", "data analysis", "SQL", "GIS"]
 },
 {
-	"name": "CartoCamp NYC",
+	"venue": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
 	"date": "2016-12-16",
 	"title": "Explore Time and Space with SQL and PostGIS",
-	"writeup": "https://gist.github.com/andy-esch/068b8dcc9fa796d1b89dc091219adbf0",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/235426549/"
+	"writeup": "https://github.com/CartoCamp/workshops/blob/master/2016-12-02-explore-time-space-sql-postgis/writeup.md",
+	"venueListing": "https://www.meetup.com/CartoCamp/events/235426549/",
+    "description": "A workshop exploring PostgreSQL's date and PostGIS's spatial power to explore New York City through Taxi Data. We monitor taxi traffic to and from buildings and are able to identify, for example, which airport terminals and the times people boarded a taxi.",
+    "skills": ["SQL", "data analysis", "data visualization", "PostGIS"]
 },
 {
-	"name": "CartoCamp NYC",
+	"venue": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
 	"date": "2017-01-27",
 	"title": "Data Science with Maps",
-	"writeup": "",
-	"url_listing": "https://www.meetup.com/CartoCamp/events/236668763/"
+	"venueListing": "https://www.meetup.com/CartoCamp/events/236668763/",
+    "writeup": "https://github.com/CartoCamp/workshops/tree/master/2017-01-27-data-sci-maps",
+    "description": "This workshop laid some of the groundwork for my furture work creating <a href=\"https://github.com/CartoDB/cartoframes\">cartoframes</a>.",
+    "skills": ["Python", "cartography", "cartoframes", "SQL"]
 }]
