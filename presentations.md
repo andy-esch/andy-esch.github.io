@@ -4,7 +4,7 @@ layout: default
 
 {% assign curr_time = "now" | date: "%Y-%m-%d %H:%M" %}
 {% assign past_events = site.data.talks | where_exp:"item", "item.date < curr_time" | sort: 'date' | reverse %}
-{% assign future_events = site.data.talks | where_exp:"item", "item.date >= curr_time" | sort: 'date' | reverse %}
+{% assign future_events = site.data.talks | where_exp:"item", "item.date >= curr_time" | sort: 'date' %}
 
 ## [](#conferences)Conferences and Annual Meetings
 
@@ -53,22 +53,36 @@ A sample of talks given at conferences and annual meetings. Materials and record
 
 {% assign workshops = site.data.workshops | sort: 'date' | reverse %}
 
-The following are workshops and presentations given, usually educational in nature. This is a placeholder until events are added.
+I have given more workshops than I can remember, so what is below is a small sample of the ones that live online and are diverse in content.
 
 <dl class="talk-list">
 {% for workshop in workshops %}
-    <dt>{% if workshop.url_listing != "" %}
-          <a href="{{ workshop.url_listing }}">{{ workshop.name }}</a>
-        {% else %}
-	  {{ workshop.name }}
-        {% endif %}
-	- {{ workshop.location }} <span class="talk-date">{{ workshop.date | date_to_string }}</span>
+    {% capture talkLinks %}
+      {% if workshop.writeup or workshop.venueListing %}
+        {%- if workshop.writeup -%}<a href="{{ workshop.writeup }}">Writeup</a>{% if workshop.venueListing %}, {% endif %}
+         {%- endif -%}
+         {%- if workshop.venueListing -%}<a href="{{ workshop.venueListing }}">Event listing</a>{%- endif -%}
+      {% endif %}
+    {% endcapture %}
+    <dt>
+      {{ workshop.title }} <span class="talk-date">{{ workshop.date | date_to_string }}</span>
    </dt>
-   <dd><span class="talk-title">{{ workshop.title }}</span>
-       {% if workshop.description %}
+   {% if talkLinks %}
+      <dd>{{ talkLinks }}</dd>
+   {% endif %}
+   {% if workshop.description %}
            <dd>{{ workshop.description }}</dd>
-       {% endif %}
+   {% endif %}
+   <dd class="workshop-skills venue">
+     <span class="workshop-meta-cat">Venue</span>
+       {% if workshop.venueListing %}
+         <a href="{{ workshop.venueListing }}">{{ workshop.venue }}</a>,
+       {% else %}{{ workshop.venue }},
+       {% endif %} {{ workshop.location }}
    </dd>
+       {% if workshop.skills %}
+         <dd class="workshop-skills"><span class="workshop-meta-cat">Skills</span> {{ workshop.skills | join: ', ' }}</dd>
+       {% endif %}
 {% endfor %}
 </dl>
 
