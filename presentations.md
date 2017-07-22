@@ -57,13 +57,16 @@ I have given more workshops than I can remember, so what is below is a small sam
 
 <dl class="talk-list">
 {% for workshop in workshops %}
-    {% capture talkLinks %}
-      {% if workshop.writeup or workshop.venueListing %}
-        {%- if workshop.writeup -%}<a href="{{ workshop.writeup }}">Writeup</a>{% if workshop.venueListing %}, {% endif %}
-         {%- endif -%}
-         {%- if workshop.venueListing -%}<a href="{{ workshop.venueListing }}">Event listing</a>{%- endif -%}
-      {% endif %}
-    {% endcapture %}
+    {%- capture talkLinks -%}
+      {%- if workshop.writeup or workshop.venueListing -%}
+        {%- if workshop.writeup -%}
+          <a href="{{ workshop.writeup }}">Writeup</a>{% if workshop.venueListing %}, {% endif %}
+        {%- endif -%}
+        {%- if workshop.venueListing -%}
+          <a href="{{ workshop.venueListing }}">Event listing</a>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endcapture -%}
     <dt>
       {{ workshop.title }} <span class="talk-date">{{ workshop.date | date_to_string }}</span>
    </dt>
