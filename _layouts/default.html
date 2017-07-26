@@ -18,7 +18,7 @@
     <div class="wrapper">
       <header>
         <h1><a href="/">{{ site.title }}</a></h1>
-        {% if page.title %}
+        {% if page.title and page.title != "" %}
           <h2>{{ page.title }}</h2>
         {% endif %}
         {% if page.description %}
