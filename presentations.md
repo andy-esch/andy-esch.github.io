@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Presentations
 ---
 
 {% assign curr_time = "now" | date: "%Y-%m-%d %H:%M" %}

@@ -1,8 +1,7 @@
 ---
 layout: default
+title: Projects
 ---
-
-# Projects
 
 ## [](#cartocamp)CartoCamp
 
