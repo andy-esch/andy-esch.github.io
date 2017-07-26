@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.lang | default: "en-US" }}">
+<html lang="{{ site.lang | default: 'en-US' }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -21,13 +21,18 @@
         {% if page.title %}
           <h2>{{ page.title }}</h2>
         {% endif %}
-        <p>{{ site.long_description }}</p>
-	<img src="/assets/img/me-small.jpg" alt="Me on the rim of Waimea Canyon" title="Rim of Waimea Canyon, Kauai"/>
+        {% if page.description %}
+          <p>{{ page.description }}</p>
+        {% else %}
+          <p>{{ site.long_description }}</p>
+        {% endif %}
+        <img src="/assets/img/me-small.jpg" alt="Me on the rim of Waimea Canyon" title="Rim of Waimea Canyon, Kauai"/>
         <div class="social">
 		<h3>Other places to find me</h3> 
 		<p>{% include icon-twitter.html username=site.twitter_username %}</p>
 		<p>{% include icon-github.html username=site.github_username %}</p>
 		<p>{% include icon-linkedin.html username=site.linkedin_username %}</p>
+        <p>{% include icon-email.html email=site.email %}</p>
 	</div>
       </header>
       <section>

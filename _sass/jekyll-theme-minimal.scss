@@ -57,6 +57,10 @@ a:hover small {
   color:#777;
 }
 
+.page-title {
+  text-align: right;
+}
+
 .wrapper {
   width:860px;
   margin:0 auto;
@@ -185,6 +189,10 @@ img {
   float: right;
   margin: 0 0 0 10px;
   width: 264px;
+}
+
+.item-desc-incl > figure {
+  width: 270px;
 }
 
 .clearfix:before,

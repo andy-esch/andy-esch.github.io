@@ -1,15 +1,17 @@
 ---
 layout: default
 title: Presentations
+description: Talks, demos, and workshops given as a data scientist and educator
+img: talks
 ---
 
 {% assign curr_time = "now" | date: "%Y-%m-%d %H:%M" %}
 {% assign past_events = site.data.talks | where_exp:"item", "item.date < curr_time" | sort: 'date' | reverse %}
 {% assign future_events = site.data.talks | where_exp:"item", "item.date >= curr_time" | sort: 'date' %}
 
-## [](#conferences)Conferences and Annual Meetings
+## [](#talks)Talks
 
-A sample of talks given at conferences and annual meetings. Materials and recordings are given when available.
+A sample of talks given at conferences, annual meetings, and meetups. Materials and recordings are given when available.
 
 ### [](#upcoming-confs)Upcoming
 
