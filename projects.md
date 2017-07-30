@@ -46,6 +46,21 @@ cc.map(layers=[Layer('acadia_regions'),
 
 See the full project at its GitHub repo: <https://github.com/CartoDB/cartoframes/>.
 
+
+## Pecan Cookies - a map thinking engine 
+
+I wrote a 'map thinking engine' that helped CARTO users create new maps by suggesting styles to apply to the map based on properties of the data in the underlying dataset. [TechCrunch](https://techcrunch.com/2015/07/21/cartodb-lets-anyone-visualize-their-data-with-one-click-mapping/) picked up the work, which lives in a [GitHub repo](https://github.com/CartoDB/pecan). I wrote the decision tree and a PoC, and [these stellar developers](https://github.com/CartoDB/pecan/blob/5bdb38443fca6a9e34a3f3a87e778143ef514609/package.json#L24-L29) implemented it within CARTO's Editor and packaging it as a node module.
+
+{% include figure.html caption_text="Draft Pecan Cookies flow chart, eventually implemented in <a href=\"https://github.com/CartoDB/pecan\">CARTO's pecan node module</a>"
+                       img_name="pecan-flow-chart.png"
+		       alt_text="Draft Pecan Cookies flow chart" %}
+
+The final implementation looked as follows:
+
+{% include figure.html caption_text="Pecan cookies workflow. Image from the blog post <a href=\"\">One-Click Mapping: The Mapping Revolution</a>"
+                       img_name="pecan-in-action.png"
+		       alt_text="Pecan cookies workflow" %}
+
 ## [](#phonetic-teacher)Military Phonetic Alphabet Teacher
 
 My last name is always hard to spell when I'm on the phone with my health insurance company or bank. I struggle to come up with good words for letters ("E as in Edward, S as in uhhh Sam, C as in Cheese, ..."). To make my life easier, I learned the military phonetic alphabet. While just writing the words and letters on some index cards, or using an online resource that does the digitial version, I decided to write a little Python program that allows me to use one of the many great language recongnition services so I can practice speaking instead of just having to type.
