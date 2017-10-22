@@ -13,7 +13,9 @@ img: talks
 
 A sample of talks given at conferences, annual meetings, and meetups. Materials and recordings are given when available.
 
+{% if future_events.size > 0 %}
 ### [](#upcoming-confs)Upcoming
+{% endif %}
 
 
 <dl class="talk-list">
