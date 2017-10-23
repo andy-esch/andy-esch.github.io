@@ -3,7 +3,7 @@
 	"location": "London, England",
 	"date": "2017-10-14",
 	"title": "Open Spatial Data Science",
-	"slides_url": "",
+	"slides_url": "https://docs.google.com/presentation/d/17uNLTODau-MOM4x0Iv1KfDL9f9MUMQT5a2LWb8YPYww/edit?usp=sharing",
 	"conf_url": "https://www.odsc.com/london",
     "description": "The spatial part of a dataset gives more than just a lat/long. It allows you to thread a needle through any other spatial dataset that exists at that location: census, GPS tracks, data from a municipality's open data portal, and so much more. The spatial part is a key to a multidimensional world.<br /><br /> Augmenting your spatial data is only one piece, though. Once you know a location, you can use the measurements at the locations around you by appealing to Tobler's First Law of geography: \"Everything is related to everything else, but near things are more related than distance things.\" Using this, statistics of geography allow you to find spatial correlations (Moran's I), calculate spatial regression (geographically weighted regression), and uncover spatial outliers (Getis-Ord's G*). At CARTO we're building these powerful techniques into an API (<a href=\"https://github.com/CartoDB/crankshaft\">https://github.com/CartoDB/crankshaft</a>) where data scientists can extract more value from his/her spatial data. Combined with the data augmentation process that we call the Data Observatory (<a href=\"https://carto.com/data-observatory\">https://carto.com/data-observatory</a>), data scientists are freer and more enabled to explore their data in the context of the world."
 },
