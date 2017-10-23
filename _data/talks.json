@@ -80,7 +80,7 @@
 	"location": "Montréal, Canada",
 	"date": "2017-10-11",
 	"title": "Programmatic cartography in <a href=\"https://github.com/CartoDB/cartoframes/\">cartoframes</a>",
-	"slides_url": "",
+	"slides_url": "https://docs.google.com/presentation/d/1AGGGkbtLuREf4zRPjzL2nQOhznGKh4cr41l2uN2iuno/edit?usp=sharing",
 	"conf_url": "http://nacis.org/annual-meeting/current-meeting/",
 	"description": "Discussion of the cartographic techniques built into cartoframes to help data scientist create better cartographic outputs based on the type of data they are visualizing"
 },
