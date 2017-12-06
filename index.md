@@ -22,7 +22,3 @@ title: Andy Eschbacher
 	</figure>
 	<div>Presentations I've given at conferences, annual meetings, workshops at universities or bootcamps, and other educational work.</div>
 </div>
-
-## Blog
-
-Blog -- coming soon
