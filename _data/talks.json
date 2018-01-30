@@ -1,4 +1,12 @@
 [{
+    "name": "ODSC East",
+    "location": "Boston, Mass, USA",
+    "date": "2018-05-01",
+    "title": "Spatial Data Science Analyses",
+    "conf_url": "https://odsc.com/boston",
+    "description": "Spatial data science uses many of the same techniques and algorithm as traditional data science, but the spatial component can add a large amount of additional information by combining with other sources at the same location (e.g., census, geolocated tweets), using realtime routing services, or using the spatial structure of the distribution of the data.<br /><br />In this talk, I will highlight work we have done in linear optimization, genetic algorithms, and constraint-based clustering that take specital advantage of the spatial part of the data. For example, using the Python package <a href=\"http://cvxopt.org/\">CVXOPT</a>, we solved a linear optimization problem that optimally distributes an asset from a source to a drain according to the road network and constraints that the drains cannot be over capacity, occasionally have fixed assignments, and all the asset has to be moved."
+},
+{
 	"name": "ODSC Europe",
 	"location": "London, England",
 	"date": "2017-10-14",
