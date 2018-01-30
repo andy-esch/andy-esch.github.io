@@ -20,14 +20,18 @@ A sample of talks given at conferences, annual meetings, and meetups. Materials 
 
 <dl class="talk-list">
 {% for event in future_events %}
-    <dt>{% if event.conf_url != "" %}
+    <dt>{% if event.conf_url %}
           <a href="{{ event.conf_url }}">{{ event.name }}</a>
         {% else %}
 	  {{ event.name }}
         {% endif %}
 	- {{ event.location }} <span class="talk-date">{{ event.date | date_to_string }}</span>
     </dt>
-    <dd><span class="talk-title">{{ event.title }}</span> {% if event.slides_url != "" %} (<a href="{{ event.slides_url }}">slide deck</a>) {% endif %}</dd>
+    <dd><span class="talk-title">{{ event.title }}</span>
+        {% if events.slides_url %}
+            (<a href="{{ event.slides_url }}">slide deck</a>)
+        {% endif %}
+    </dd>
     {% if event.description %}<dd>{{ event.description }}</dd>{% endif %}
 {% endfor %}
 </dl>
@@ -36,7 +40,7 @@ A sample of talks given at conferences, annual meetings, and meetups. Materials 
 
 <dl class="talk-list">
 {% for event in past_events %}
-    <dt>{% if event.conf_url != "" %}
+    <dt>{% if event.conf_url %}
           <a href="{{ event.conf_url }}">{{ event.name }}</a>
         {% else %}
 	  {{ event.name }}
@@ -44,7 +48,7 @@ A sample of talks given at conferences, annual meetings, and meetups. Materials 
 	- {{ event.location }} <span class="talk-date">{{ event.date | date_to_string }}</span>
     </dt>
     <dd><span class="talk-title">{{ event.title }}</span>
-        {% if event.slides_url != "" %}
+        {% if event.slides_url %}
 	    (<a href="{{ event.slides_url }}">slide deck</a>)
         {% endif %}
     </dd>
