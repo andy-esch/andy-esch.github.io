@@ -84,4 +84,10 @@ I wrote a [blog post](https://carto.com/blog/summer-mapping-project) about it, a
 
 <iframe src="https://team.carto.com/u/eschbacher/viz/3583a1d6-191f-11e5-9190-0e5e07bb5d8a/embed_map" width="640" height="480"></iframe>
 
+## [](#map-academy)Carto(DB)'s Map Academy
+
+I created most of the education content at then CartoDB's [Map Academy](https://carto.com/academy/), which taught CartoDB's Editor and APIs.
+
+The site is all open source: <https://github.com/cartodb/academy>
+
 {% include footer.html %}
