@@ -3,17 +3,17 @@ layout: default
 title: Andy Eschbacher
 ---
 
-## [Projects](projects.html)
+## [Projects](./projects/)
 
 <div class="clearfix item-desc">
 	<figure>
-		<a href="/projects.html#honeymoon-mapping"><img src="/assets/img/honeymoon.png" alt="honeymoon map" width="240" /></a>
+		<a href="/projects/#honeymoon-mapping"><img src="/assets/img/honeymoon.png" alt="honeymoon map" width="240" /></a>
 		<figcaption>Map of honeymoon journey from Beijing, China to St. Petersburg, Russia</figcaption>
 	</figure>
 	<div>Projects covering work on coding, math, and maps. Includes projects like a Python package for interacting with CARTO's services, an effort to find the best place to live, and a program to teach the military phonetic alphabet.</div>
 </div>
 
-## [Presentations](presentations.html)
+## [Presentations](/presentations/)
 
 <div class="clearfix item-desc">
 	<figure>

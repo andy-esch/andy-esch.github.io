@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Projects
+permalink: projects/
 description: A small sample of projects created over the last couple of years.
 ---
 

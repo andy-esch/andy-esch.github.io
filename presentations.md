@@ -2,6 +2,7 @@
 layout: default
 title: Presentations
 description: Talks, demos, and workshops given as a data scientist and educator
+permalink: presentations/
 img: talks
 ---
 
