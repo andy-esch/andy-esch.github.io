@@ -3,7 +3,7 @@
 	"location": "Madrid, Spain",
 	"date": "2018-04-20",
 	"title": "Overview of CARTOframes",
-	"writeup": "",
+	"writeup": null,
 	"venueListing": "https://carto.com/locations-event/madrid/",
     "skills": ["Python", "cartoframes", "data science"]
 },{
