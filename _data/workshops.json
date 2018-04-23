@@ -1,4 +1,12 @@
 [{
+	"venue": "CARTO Locations",
+	"location": "Madrid, Spain",
+	"date": "2018-04-20",
+	"title": "Overview of CARTOframes",
+	"writeup": "",
+	"venueListing": "https://carto.com/locations-event/madrid/",
+    "skills": ["Python", "cartoframes", "data science"]
+},{
 	"venue": "CartoCamp NYC",
 	"location": "Brooklyn, NY",
 	"date": "2016-01-12",
