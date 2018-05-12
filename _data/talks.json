@@ -7,6 +7,14 @@
     "description": "The birth of <a href=\"https://github.com/cartodb/cartoframes\">cartoframes</a> as a project on the research team at CARTO and the need for better tools that fit in the data scientists' workflows. This talk will go beyond the origins of cartoframes and introduce the newest features and where were are going inf the future with this package."
 },
 {
+    "name": "CARTO Locations",
+    "location": "Madrid, Spain",
+    "date": "2018-04-20",
+    "title": "Blackbelt in spatial analytics",
+    "conf_url": "https://carto.com/locations-event/madrid/",
+    "description": ""
+},
+{
     "name": "ODSC East",
     "location": "Boston, Mass, USA",
     "date": "2018-05-01",
