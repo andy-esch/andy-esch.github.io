@@ -1,4 +1,11 @@
 [{
+    "name": "ODSC West",
+    "location": "San Francisco, CA, USA",
+    "date": "2018-10-31",
+    "title": "TBD",
+    "conf_url": "https://odsc.com/california",
+    "description": ""
+},{
     "name": "CARTO Locations",
     "location": "Madrid, Spain",
     "date": "2018-04-19",
