@@ -1,19 +1,11 @@
 [
     {
-        "conf_url": "http://nacis.org/annual-meeting/current-meeting/",
-        "date": "2018-10-17",
-        "description": "<p>Data science is a wide field composed of people with a diverse range of skills. While some data scientists excel at data visualization, an even smaller subset are versed in basic cartographic principles.</p><p>This presentation will share tips, tricks, and tools used to visualize spatial data commonly encountered by data scientists such as millions of GPS points or time series data. Tools discussed will include the explosion of data science-targeted mapping packages released by CARTO, Mapbox, and the open source community.</p>",
-        "location": "Norfolk, VA, USA",
-        "name": "NACIS Annual Meeting",
-        "title": "Data scientists need good cartography, too"
-    },
-    {
-        "conf_url": "https://odsc.com/california",
-        "date": "2018-10-31",
-        "description": "",
-        "location": "San Francisco, CA, USA",
-        "name": "ODSC West",
-        "title": "TBD"
+        "conf_url": "https://carto.com/webinars/spatial-data-science-carto-python-recorded/",
+        "date": "2019-01-10",
+        "description": "Learn how you can combine CARTO and Python for spatial data science from the comfort of your own Jupyter notebook. In this technical webinar, Andy Eschbacher (Data Scientist at CARTO) and Joe Pringle (VP - North America at CARTO) will show how to apply CARTOframes and CARTO's Python SDK to build powerful end-to-end spatial data science workflows.",
+        "location": "Internet",
+        "name": "CARTO webinar",
+        "title": "Best Practices for Spatial Data Science using CARTO and Python"
     },
     {
         "conf_url": "https://carto.com/locations-event/madrid/",
