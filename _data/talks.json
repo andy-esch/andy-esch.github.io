@@ -1,6 +1,16 @@
 [
     {
         "conf_url": "https://carto.com/webinars/spatial-data-science-carto-python-recorded/",
+        "slides_url": "",
+        "date": "2019-05-02",
+        "description": "Making good maps in data science is hard. Maps are another form of data visualization with its own set of design principles to bring out the story in the data. Data scientists need for maps varies, but a very common use case is to quickly generate a data visualization iteratively to better understand model outputs, spatial variations in the data, and more.<br /> In this mini-tutorial, I will cover best practices for data scientists needing maps -- ideas pulled from cartography and honed over the years working in the intersection of open source GIS and data science. Using open source tools, I will show how to make patterns more apparent, how to build interactive maps so that it is easier to explore data on larger and smaller scales, and some list some cartographic tips and tricks. The goal is that data viz with maps will be made easier so that you can think about your data science problems instead of worrying about visualizing data on a map.",
+        "location": "Boston, MA, USA",
+        "name": "ODSC East",
+        "title": "Maps & Machine Learning: Best Practices for Great Cartography in Data Science"
+    },
+    {
+        "conf_url": "https://carto.com/webinars/spatial-data-science-carto-python-recorded/",
+        "slides_url": "https://carto.com/webinars/spatial-data-science-carto-python-recorded/",
         "date": "2019-01-10",
         "description": "Learn how you can combine CARTO and Python for spatial data science from the comfort of your own Jupyter notebook. In this technical webinar, Andy Eschbacher (Data Scientist at CARTO) and Joe Pringle (VP - North America at CARTO) will show how to apply CARTOframes and CARTO's Python SDK to build powerful end-to-end spatial data science workflows.",
         "location": "Internet",
