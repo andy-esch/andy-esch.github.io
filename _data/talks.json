@@ -1,5 +1,14 @@
 [
     {
+        "conf_url": "https://go.carto.com/webinars/spatial-analysis-carto-python-recorded",
+        "slides_url": "https://www.slideshare.net/CartoDB/unlock-the-power-of-spatial-analysis-using-carto-and-python-cartoframes",
+        "date": "2019-09-25",
+        "description": "<p>Learn how to <strong>integrate spatial data and analysis to your data science models using CARTOframes</strong>—a Python package that allows data scientists to seamlessly integrate CARTO maps, data, and analysis into their current environment.</p><p>We have recently launched a new <a href=\"https://carto.com/cartoframes/\" rel=\"noopener\" target=\"_blank\">CARTOframes</a> version packed with new functionality to build powerful end-to-end spatial data science workflows.&nbsp;</p><p>In this webinar, <a href=\"https://www.linkedin.com/in/andyeschbacher\" rel=\"noopener\" target=\"_blank\">Andy Eschbacher</a> (Data Scientist) and <a href=\"https://es.linkedin.com/in/cmongut\" rel=\"noopener\" target=\"_blank\">César Monteserín</a> (Product Manager) show how you can power your spatial data science journey with CARTOframes:</p><ul><li>- <strong>Creating interactive visualizations</strong> straight out of Jupyter notebooks</li><li>- <strong>Enriching your data</strong> with best-in-class data streams</li><li>- <strong>Analyzing your data</strong> and getting insights using your own libraries, functions, and workflows</li><li>- <strong>Uploading and sharing your maps</strong></li></ul><p>We go over CARTOframes new functionality and real-life examples.&nbsp;</p><p>A pdf of the slides of the presentation is also available to <a href=\"https://www.slideshare.net/CartoDB/unlock-the-power-of-spatial-analysis-using-carto-and-python-cartoframes\" rel=\"noopener\" target=\"_blank\">download here</a>.&nbsp;</p>",
+        "location": "Internet",
+        "name": "CARTO Webinar",
+        "title": "Unlock the Power of Spatial Analysis using CARTO and Python"
+    },
+    {
         "conf_url": "https://www.datacouncil.ai/",
         "slides_url": "",
         "date": "2019-04-17",
