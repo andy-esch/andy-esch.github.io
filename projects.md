@@ -5,9 +5,11 @@ permalink: projects/
 description: A small sample of projects created over the last couple of years.
 ---
 
-## [](#cartocamp)CartoCamp
+## [](#penn-musa)Geographic Cloud Computing &amp; Visualization
 
-I've been running a meetup to help people learn new skills tangential to making maps and analyzing spatial data. It's called [CartoCamp](https://www.meetup.com/cartocamp/). We were recently listed as one of the [Top 8 Brooklyn meetups](https://technical.ly/brooklyn/2017/07/11/best-technical-meetups/) for learning technology skills.
+I taught a class in the University of Pennsylvania's Master of Urban Spatial Analytics program. Students built and deployed Flask applications on AWS. Data was stored and processed in a PostgreSQL/PostGIS database on AWS RDS.
+
+See [class GitHub organization](https://github.com/MUSA-509/).
 
 ## [](#finding-home)Finding Home
 
@@ -28,7 +30,7 @@ Soon I'll post the Jupyter notebook I wrote to gather the data. The steps are th
 
 ## [](#cartoframes)cartoframes
 
-I'm currently writing a Python package for integrating CARTO's services into data science workflows. [cartoframes](https://github.com/CartoDB/cartoframes/) allows users to do analysis in Python pandas DataFrames and sync up the DataFrame with a table in CARTO. DataFrames can also be created from a CARTO table, and maps can be made from arbitrary SQL queries against any data in the user database using CartoCSS.
+I wrote v0 of a Python package for integrating CARTO's services into data science workflows. [cartoframes](https://github.com/CartoDB/cartoframes/) allows users to do analysis in Python pandas DataFrames and sync up the DataFrame with a table in CARTO. DataFrames can also be created from a CARTO table, and maps can be made from arbitrary SQL queries against any data in the user database using CartoCSS.
 
 
 ```python
@@ -48,7 +50,7 @@ cc.map(layers=[Layer('acadia_regions'),
 See the full project at its GitHub repo: <https://github.com/CartoDB/cartoframes/>.
 
 
-## Pecan Cookies - a map thinking engine 
+## Pecan Cookies &emdash; a map thinking engine 
 
 I wrote a 'map thinking engine' that helped CARTO users create new maps by suggesting styles to apply to the map based on properties of the data in the underlying dataset. [TechCrunch](https://techcrunch.com/2015/07/21/cartodb-lets-anyone-visualize-their-data-with-one-click-mapping/) picked up the work, which lives in a [GitHub repo](https://github.com/CartoDB/pecan). I wrote the decision tree and a PoC, and [these stellar developers](https://github.com/CartoDB/pecan/blob/5bdb38443fca6a9e34a3f3a87e778143ef514609/package.json#L24-L29) implemented it within CARTO's Editor and packaging it as a node module.
 
@@ -90,5 +92,9 @@ I wrote a [blog post](https://carto.com/blog/summer-mapping-project) about it, a
 I created most of the education content at then CartoDB's [Map Academy](https://carto.com/academy/), which taught CartoDB's Editor and APIs.
 
 The site is all open source: <https://github.com/cartodb/academy>
+
+## [](#cartocamp)CartoCamp
+
+I've been running a meetup to help people learn new skills tangential to making maps and analyzing spatial data. It's called [CartoCamp](https://www.meetup.com/cartocamp/). We were recently listed as one of the [Top 8 Brooklyn meetups](https://technical.ly/brooklyn/2017/07/11/best-technical-meetups/) for learning technology skills.
 
 {% include footer.html %}
