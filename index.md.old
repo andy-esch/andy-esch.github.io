@@ -3,6 +3,18 @@ layout: default
 title: Andy Eschbacher
 ---
 
+## [Teaching](./teaching/)
+
+I teach a course in the [Urban Spatial Analytics (MUSA)](https://www.design.upenn.edu/musa/about) program at the University of Pennsylvania. Students built custom web apps to explore and communicate research questions. Apps were built with the following tech stack:
+
+* A PostgreSQL (with PostGIS) database running in AWS cloud
+* Python Flask application with custom API endpoints
+* Database access with SQLAlchemy
+* HTML templating using Jinja2's integration in Flask
+* Deployed using AWS Elastic Beanstalk
+* BigQuery for OSM access among other large datasets (optional)
+* API calls to Mapbox, Google Maps APIs, among others
+
 ## [Projects](./projects/)
 
 <div class="clearfix item-desc">
