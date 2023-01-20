@@ -9,113 +9,10 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/index.css" />
 
 
   <title>Andy Eschbacher Personal Site</title>
-  <style>
-    @font-face {
-      font-family: 'Archivo';
-      src: url('assets/Archivo-Regular.ttf') format('truetype');
-    }
-
-    @font-face {
-      font-family: 'Archivo';
-      src: url('assets/Archivo-Bold.ttf') format('truetype');
-      font-weight: bold;
-    }
-
-    body {
-      font-family: Archivo;
-      background: #DDDDDD;
-      /* color: #0a0102; */
-    }
-
-    .head-section {
-      font-size: 36px;
-      border-radius: 2px;
-    }
-
-    .first-head {
-      border-radius: 0 0 2px 2px;
-    }
-
-    .intro-color {
-      background: #AB90A4;
-      background: #DEC367;
-    }
-
-    .intro {
-      font-size: 48px;
-      font-weight: bold;
-    }
-
-    .links {
-      font-size: 16px;
-    }
-
-    .links a {
-      display: block;
-      margin-top: 3px;
-      margin-bottom: 3px;
-    }
-
-    .links span {
-      margin-right: 0.5em;
-    }
-
-    .link-content {
-      font-size: 12px;
-    }
-
-    .subintro {
-      font-size: 36px;
-    }
-
-    .intro li {
-      font-size: 18px;
-    }
-
-    .work {
-      background: #DEC367;
-      background: #AB90A4;
-    }
-
-    .teaching {
-      background: #85AAB1;
-    }
-
-    .projects {
-      background: #ED8238;
-    }
-
-    .contact {
-      background: #AEA9A4;
-    }
-
-    .twitter {
-      content: url('assets/icon-twitter.svg');
-      height: 16px;
-      width: 16px;
-    }
-
-    .email {
-      content: url('assets/icon-email.svg');
-      height: 16px;
-      width: 16px;
-    }
-
-    .github {
-      content: url('assets/icon-github.svg');
-      height: 16px;
-      width: 16px;
-    }
-
-    .linkedin {
-      content: url('assets/icon-linkedin.svg');
-      height: 16px;
-      width: 16px;
-    }
-  </style>
 </head>
 
 <body>
@@ -141,7 +38,7 @@
     </div>
     <div class="row">
       <div class="col-lg-10 mt-3">
-        <p>Currently staff data scientist at <a href="https://www.premise.com/">Premise Data</a> where I build data science pipelines and solve problems, often related to data collected from around the world with a location component. Previous to Premise, I did a short stint at Ipsos’ Risk Analytics Division (RAD) where I worked on spatial data science and visualization for international development projects. Before this, I spent five years at Carto developing my skills in spatial data science and building a lot of prototypes. Previous to all this, I was a high school physics teacher and always dreamed of being a scientist.</p>
+        <p>Currently staff data scientist at <a class="text-dark" href="https://www.premise.com/">Premise Data</a> where I build data science pipelines and solve problems, often related to data collected from around the world with a location component. Previous to Premise, I did a short stint at Ipsos’ Risk Analytics Division (RAD) where I worked on spatial data science and visualization for international development projects. Before this, I spent five years at Carto developing my skills in spatial data science and building a lot of prototypes. Previous to all this, I was a high school physics teacher and always dreamed of being a scientist.</p>
       </div>
     </div>
     <div class="row">
@@ -151,7 +48,8 @@
     </div>
     <div class="row">
       <div class="col-lg-10 mt-3">
-          <p>I created and taught <a href="https://github.com/MUSA-509/">Geospatial Cloud Computing &amp; Visualization</a> at the <a href="https://www.design.upenn.edu/musa/about">MUSA program</a> at the University of Pennsylvania, Weitzman School of Design. With a strong emphasis on data analysis in Python with SQL and <a href="https://postgis.net/">PostGIS</a>, students built interactive web applications backed by REST APIs built with <a href="https://flask.palletsprojects.com/">Flask</a> and visualized with Jinja HTML templates. The student-built web apps told data-driven geospatial stories often from an urban planning angle. Data was housed in cloud databases/warehouses (PostgreSQL on AWS RDS and Google BigQuery) fully managed by students.</p>
+          <p>I created and taught <a class="text-dark" href="https://github.com/MUSA-509/">Geospatial Cloud Computing &amp; Visualization</a> at the <a class="text-dark" href="https://www.design.upenn.edu/musa/about">MUSA program</a> in the Weitzman School of Design, University of Pennsylvania.</p>
+          <p>With a strong emphasis on data analysis in Python with SQL and <a class="text-dark" href="https://postgis.net/">PostGIS</a>, students built interactive web applications backed by REST APIs built with <a class="text-dark" href="https://flask.palletsprojects.com/">Flask</a> and visualized with Jinja HTML templates. The student-built web apps told data-driven geospatial stories often from an urban planning angle. Data was housed in cloud databases/warehouses (PostgreSQL on <a class="text-dark" href="https://aws.amazon.com/rds/postgresql/">AWS RDS</a> and <a class="text-dark" href="https://cloud.google.com/bigquery">Google BigQuery</a>) fully managed by students.</p>
       </div>
     </div>
     <div class="row">
@@ -161,12 +59,13 @@
     </div>
     <div class="row">
       <div class="col-lg-10 mt-3">
-          <p>I've given a lot of talks and done a lot of projects. Here is a small sample... see <a href="presentations.html">a more complete list</a>.</p>
+          <p>I've given a lot of talks and done a lot of projects. Here is a small sample...</p>
       <ul>
-          <li><a href="https://www.usatoday.com/story/news/politics/2020/06/10/george-floyd-black-lives-matter-police-protests-widespread-peaceful/5325737002/">George Floyd Maps published at USA Today</a></li>
-          <li><a href="https://www.worldbank.org/en/country/lebanon/publication/beirut-rapid-damage-and-needs-assessment-rdna---august-2020">World Bank Beirut RDNA work</a></li>
-          <li><a href="https://carto.com/blog/CARTOframes-python-interface-CARTO/">Built v0 of cartoframes</a> and developed vision for v1 and acted as product manager, beta tester, developer, etc.</li>
+          <li><a class="text-dark" href="https://www.usatoday.com/story/news/politics/2020/06/10/george-floyd-black-lives-matter-police-protests-widespread-peaceful/5325737002/">George Floyd Maps published at USA Today</a></li>
+          <li><a class="text-dark" href="https://www.worldbank.org/en/country/lebanon/publication/beirut-rapid-damage-and-needs-assessment-rdna---august-2020">World Bank Beirut RDNA work</a></li>
+          <li><a class="text-dark" href="https://carto.com/blog/CARTOframes-python-interface-CARTO/">Built v0 of cartoframes</a> and developed vision for v1 and acted as product manager, beta tester, developer, etc.</li>
       </ul>
+      <p> See <a class="text-dark" href="presentations.html">a more complete list</a> of talks and workshops that I have given.</p>
       </div>
     </div>
     <div class="row">

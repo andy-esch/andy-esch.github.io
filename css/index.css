@@ -1,0 +1,113 @@
+@font-face {
+  font-family: 'Archivo';
+  src: url('../assets/Archivo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Archivo';
+  src: url('../assets/Archivo-Bold.ttf') format('truetype');
+  font-weight: bold;
+}
+
+body {
+  font-family: Archivo;
+  background: #DDDDDD;
+  /* color: #0a0102; */
+}
+
+.head-section {
+  font-size: 36px;
+  border-radius: 2px;
+}
+
+.first-head {
+  border-radius: 0 0 2px 2px;
+}
+
+.intro-color {
+  background: #AB90A4;
+  background: #DEC367;
+}
+
+.intro {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.links {
+  font-size: 16px;
+}
+
+.links a {
+  display: block;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.links span {
+  margin-right: 0.5em;
+}
+
+.link-content {
+  font-size: 12px;
+}
+
+.subintro {
+  font-size: 36px;
+}
+
+.intro li {
+  font-size: 18px;
+}
+
+.work {
+  background: #DEC367;
+  background: #AB90A4;
+}
+
+.teaching {
+  background: #85AAB1;
+}
+
+.projects {
+  background: #ED8238;
+}
+
+.contact {
+  background: #AEA9A4;
+}
+
+.talk-date {
+  font-weight: normal;
+  float: right;
+}
+.talk-title {
+  
+}
+.talk-description {
+    padding-left: 5px;
+}
+
+.twitter {
+  content: url('../assets/icon-twitter.svg');
+  height: 16px;
+  width: 16px;
+}
+
+.email {
+  content: url('../assets/icon-email.svg');
+  height: 16px;
+  width: 16px;
+}
+
+.github {
+  content: url('../assets/icon-github.svg');
+  height: 16px;
+  width: 16px;
+}
+
+.linkedin {
+  content: url('../assets/icon-linkedin.svg');
+  height: 16px;
+  width: 16px;
+}
