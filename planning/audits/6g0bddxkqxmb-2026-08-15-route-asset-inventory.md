@@ -112,7 +112,7 @@ At the normal 1512 pixel desktop viewport, the homepage container is exactly 840
 
 ## Findings
 
-#### H1. Repository root is the publication boundary  · **Status:** open
+#### H1. Repository root is the publication boundary  · **Status:** landed
 
 **File:** .github/workflows/static.yml:35 | **Component:** deployment
 **Effort:** M · **Urgency:** soon
@@ -130,7 +130,7 @@ The workflow uploads `.` directly. Source-only Markdown, Liquid, SCSS, data, pla
 
 **Recommendation:** Resolve the route contract, generate projects and custom 404 output through the chosen architecture, and add compatibility aliases where approved.
 
-#### H3. Fixed dimensions make both primary pages unusable on phones  · **Status:** open
+#### H3. Fixed dimensions make both primary pages unusable on phones  · **Status:** landed
 
 **File:** index.html:19 | **Component:** responsive layout
 **Effort:** M · **Urgency:** acute
@@ -139,7 +139,7 @@ Both primary pages force an 840 pixel inline width and fixed 126 pixel header he
 
 **Recommendation:** Replace fixed dimensions with a mobile-first intrinsic layout and validate the agreed viewport matrix.
 
-#### H4. Production and dormant Jekyll sources have diverged  · **Status:** open
+#### H4. Production and dormant Jekyll sources have diverged  · **Status:** in-progress
 
 **File:** _layouts/default.html:1 | **Component:** architecture
 **Effort:** L · **Urgency:** soon
@@ -148,7 +148,7 @@ Headers, contact details, talks, icons, fonts, and styles exist in parallel hand
 
 **Recommendation:** Select one source and build path, migrate shared layout/data, verify route equivalence, and only then remove superseded files.
 
-#### H5. Pages ship unnecessary runtime and asset weight  · **Status:** open
+#### H5. Pages ship unnecessary runtime and asset weight  · **Status:** in-progress
 
 **File:** index.html:9 | **Component:** dependencies
 **Effort:** M · **Urgency:** eventually
@@ -157,7 +157,7 @@ Both pages load an old Bootstrap beta stylesheet and JavaScript bundle without a
 
 **Recommendation:** Remove Bootstrap if the architecture decision confirms no required behavior, retain only used asset variants, and optimize surviving fonts and images.
 
-#### H6. Public pages lack basic document semantics  · **Status:** open
+#### H6. Public pages lack basic document semantics  · **Status:** in-progress
 
 **File:** index.html:18 | **Component:** accessibility
 **Effort:** M · **Urgency:** soon
@@ -166,7 +166,7 @@ The homepage has no headings or structural landmarks and includes an empty link.
 
 **Recommendation:** Add a coherent heading hierarchy, semantic landmarks, meaningful navigation, accessible icon treatment, and keyboard/zoom validation.
 
-#### H7. Legacy bacher route is approved for retirement  · **Status:** open
+#### H7. Legacy bacher route is approved for retirement  · **Status:** landed
 
 **File:** bacher/index.html:1 | **Component:** legacy route
 **Effort:** S · **Urgency:** eventually
@@ -179,12 +179,21 @@ The deployed route exposes outdated Twitter information and a broken HTTP image.
 
 All remediation work was already represented in the planning backlog before this audit:
 
-- ⏳ [Decide and document the site generation architecture](../tasks/6g0b8t40fpc8-decide-and-document-the-site-generation-architecture.md) — resolves H1 and H4.
-- ⏳ [Consolidate shared layouts and structured content](../tasks/6g0b8t482mtm-consolidate-shared-layouts-and-structured-content.md) — resolves the implementation half of H2 and H4.
-- ⏳ [Remove obsolete code assets and runtime dependencies](../tasks/6g0b8t4fpqsy-remove-obsolete-code-assets-and-runtime-dependencies.md) — resolves H5 after migration.
-- ⏳ [Implement the mobile-first layout and type system](../tasks/6g0b8ycx0ghw-implement-the-mobile-first-layout-and-type-system.md) — resolves H3.
-- ⏳ [Improve semantic and keyboard accessibility](../tasks/6g0b8ydbcahf-improve-semantic-and-keyboard-accessibility.md) — resolves H6.
-- ⏳ [Implement consistent navigation and route recovery](../tasks/6g0b93sv7f7d-implement-consistent-navigation-and-route-recovery.md) — resolves H2 and route decisions.
-- ⏳ [Build and deploy a deterministic site artifact](../tasks/6g0b99x5kres-build-and-deploy-a-deterministic-site-artifact.md) — resolves H1.
+- ✅ [Decide and document the site generation architecture](../tasks/6g0b8t40fpc8-decide-and-document-the-site-generation-architecture.md) — resolved the architecture portion of H1 and H4.
+- ✅ [Consolidate shared layouts and structured content](../tasks/6g0b8t482mtm-consolidate-shared-layouts-and-structured-content.md) — resolved the implementation half of H2 and H4.
+- ⚠️ [Remove obsolete code assets and runtime dependencies](../tasks/6g0b8t4fpqsy-remove-obsolete-code-assets-and-runtime-dependencies.md) — production runtime cleanup is landed; dormant repository assets remain under H4 and H5.
+- ⚠️ [Implement the mobile-first layout and type system](../tasks/6g0b8ycx0ghw-implement-the-mobile-first-layout-and-type-system.md) — the layout fix is landed; the formal acceptance matrix remains.
+- ⚠️ [Improve semantic and keyboard accessibility](../tasks/6g0b8ydbcahf-improve-semantic-and-keyboard-accessibility.md) — core semantics are landed; complete validation and remaining refinements under H6.
+- ⚠️ [Implement consistent navigation and route recovery](../tasks/6g0b93sv7f7d-implement-consistent-navigation-and-route-recovery.md) — shared navigation is landed; route decisions and the custom 404 remain under H2.
+- ✅ [Build and deploy a deterministic site artifact](../tasks/6g0b99x5kres-build-and-deploy-a-deterministic-site-artifact.md) — resolved H1.
 - ⏳ [Optimize fonts images and page performance](../tasks/6g0b99xw3kaj-optimize-fonts-images-and-page-performance.md) — resolves the performance portion of H5.
 - ⏳ [Verify custom-domain HTTPS privacy and browser hardening](../tasks/6g0b99yaq3sa-verify-custom-domain-https-privacy-and-browser-hardening.md) — verifies the domain/settings observations.
+
+## Post-deployment reconciliation (2026-08-15)
+
+- **H1 — landed:** GitHub Actions now builds the pinned Hugo source into `public/`, validates the generated boundary, uploads only that directory, and deploys it from a separate job. After deployment, representative repository-source URLs such as `/README.md` and `/planning/epics/01-unify-the-site-foundation.md` return 404.
+- **H3 — landed:** The deployed Hugo layouts replace the fixed-width document with a fluid small-screen layout while preserving the original 840px desktop composition. Local browser checks at 320px and 375px found exact viewport/document widths, no offscreen elements, and intentionally stacked archive metadata.
+- **H4 — in progress:** Hugo is now the sole production build and the active hand-written duplicates were removed. Dormant Jekyll-era sources and duplicate assets remain for the dedicated cleanup task.
+- **H5 — in progress:** Production no longer loads Bootstrap or browser JavaScript, and only the required Archivo weights and contact icons are emitted. Unused source assets remain in the repository for the dedicated cleanup and performance tasks.
+- **H6 — in progress:** The generated pages now have language and viewport metadata, coherent headings, header/nav/main structure, a skip link, visible focus styling, and decorative icon treatment. Contrast, touch-target, keyboard, zoom, and automated accessibility validation remain outstanding.
+- **H7 — landed:** After the successful main-branch deployment, `https://andyes.ch/bacher/` returns 404 as approved.
