@@ -34,4 +34,7 @@ if find "${site_dir}" -type f \( -name '*.md' -o -name '*.toml' -o -name '*.js' 
   exit 1
 fi
 
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/check_generated_site.py "${site_dir}"
+
 echo "validated generated site boundary in ${site_dir}"

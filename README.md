@@ -23,4 +23,13 @@ hugo build --gc --minify
 bash scripts/check-site.sh
 ```
 
+The validation command checks the generated route boundary, strict document
+structure, duplicate IDs, local links and fragments, and local HTML/CSS
+resources. External URLs are deliberately reported but not requested, so an
+unrelated third-party outage cannot block a deployment.
+
+Pull requests run the same build and validation job in GitHub Actions. Only a
+successful non-PR run is permitted to deploy that validated artifact to GitHub
+Pages.
+
 Only `public/` is deployable. It is generated output and must not be edited or committed.
