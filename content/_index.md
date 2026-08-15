@@ -5,7 +5,13 @@ description: Machine learning engineer and data scientist working with global lo
 
 ## Work
 
-I'm a Staff Data Scientist at Premise Data, where I lead ML systems that process global location data. Previously, I worked at Ipsos' Risk Analytics Division on spatial data science for international development, including rapid response work supporting the World Bank after the 2020 Beirut explosion. I spent five years at CARTO developing spatial data science expertise and created CARTOframes, a Python package that became a core company product. Before transitioning to data science and engineering, I taught high school physics.
+Currently a Staff Machine Learning Engineer at Ethyca building out ML-focused privacy guardrails for data access.
+
+As a Staff Data Scientist at Premise Data, I led ML systems that process global location data. Previously, I worked
+at Ipsos' Risk Analytics Division on spatial data science for international development, including rapid response
+work supporting the World Bank after the 2020 Beirut explosion. I spent five years at CARTO developing spatial data
+science expertise and created CARTOframes, a Python package that became a core company product. Before transitioning
+to data science and engineering, I taught high school physics.
 
 ## Teaching
 
