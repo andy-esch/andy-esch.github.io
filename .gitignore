@@ -1,4 +1,7 @@
 .sass-cache/
 _site/
+/public/
+/resources/_gen/
+/.hugo_build.lock
 *.sw[nop]
 .DS_Store

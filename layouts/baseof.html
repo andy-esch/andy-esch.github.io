@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ .Description | default site.Params.description }}">
+    <title>{{ if .IsHome }}{{ site.Title }} · MLE and data scientist{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    {{- with resources.Get "css/site.css" | resources.ExecuteAsTemplate "css/site.css" . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+    {{- end }}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="site-frame">
+      {{ partial "site-header.html" . }}
+      <main id="main-content">
+        {{ block "main" . }}{{ end }}
+      </main>
+      {{ partial "site-footer.html" . }}
+    </div>
+  </body>
+</html>

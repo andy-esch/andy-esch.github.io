@@ -1,0 +1,39 @@
+{{ define "main" }}
+  <article class="presentations">
+    <header class="page-heading">
+      <h1>{{ .Title }}</h1>
+    </header>
+    <p class="page-description">{{ .Description }}</p>
+
+    <ol class="talk-list">
+      {{ range sort hugo.Data.talks "date" "desc" }}
+        {{- $talk := . -}}
+        <li class="talk-card">
+          <article>
+            <header class="talk-heading">
+              <h2>{{ .title }}</h2>
+            </header>
+            <p class="talk-venue">
+              <span>
+                {{- with .conf_url -}}
+                  <a href="{{ . }}">{{ $talk.name }}</a>
+                {{- else -}}
+                  {{ .name }}
+                {{- end -}}
+                <span aria-hidden="true"> · </span>{{ .location }}
+                {{- with .slides_url -}}
+                  <span aria-hidden="true"> · </span><a href="{{ . }}">Slides</a>
+                {{- end -}}
+              </span>
+              <time datetime="{{ .date }}">{{ time.Format "January 2, 2006" .date }}</time>
+            </p>
+            {{ with .description_html }}
+              {{/* Source-controlled legacy fragments were audited for a small HTML tag and URL allowlist before migration. */}}
+              <div class="talk-description">{{ . | safeHTML }}</div>
+            {{ end }}
+          </article>
+        </li>
+      {{ end }}
+    </ol>
+  </article>
+{{ end }}
