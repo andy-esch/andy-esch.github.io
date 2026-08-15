@@ -1,10 +1,9 @@
 {{ define "main" }}
   <article class="presentations">
     <header class="page-heading">
-      <p class="eyebrow">Archive</p>
       <h1>{{ .Title }}</h1>
-      <p>{{ .Description }}</p>
     </header>
+    <p class="page-description">{{ .Description }}</p>
 
     <ol class="talk-list">
       {{ range sort hugo.Data.talks "date" "desc" }}
@@ -13,18 +12,20 @@
           <article>
             <header class="talk-heading">
               <h2>{{ .title }}</h2>
-              <time datetime="{{ .date }}">{{ time.Format "January 2, 2006" .date }}</time>
             </header>
             <p class="talk-venue">
-              {{- with .conf_url -}}
-                <a href="{{ . }}">{{ $talk.name }}</a>
-              {{- else -}}
-                {{ .name }}
-              {{- end -}}
-              <span aria-hidden="true"> · </span>{{ .location }}
-              {{- with .slides_url -}}
-                <span aria-hidden="true"> · </span><a href="{{ . }}">Slides</a>
-              {{- end -}}
+              <span>
+                {{- with .conf_url -}}
+                  <a href="{{ . }}">{{ $talk.name }}</a>
+                {{- else -}}
+                  {{ .name }}
+                {{- end -}}
+                <span aria-hidden="true"> · </span>{{ .location }}
+                {{- with .slides_url -}}
+                  <span aria-hidden="true"> · </span><a href="{{ . }}">Slides</a>
+                {{- end -}}
+              </span>
+              <time datetime="{{ .date }}">{{ time.Format "January 2, 2006" .date }}</time>
             </p>
             {{ with .description_html }}
               {{/* Source-controlled legacy fragments were audited for a small HTML tag and URL allowlist before migration. */}}

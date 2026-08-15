@@ -1,4 +1,7 @@
 {{- $current := . -}}
+{{- $emailIcon := resources.Get "icon-email.svg" | fingerprint -}}
+{{- $githubIcon := resources.Get "icon-github.svg" | fingerprint -}}
+{{- $linkedinIcon := resources.Get "icon-linkedin.svg" | fingerprint -}}
 <header class="site-header">
   <div class="identity">
     {{ if .IsHome }}
@@ -6,14 +9,23 @@
     {{ else }}
       <a class="site-name" href="{{ site.Home.RelPermalink }}">Andy Eschbacher</a>
     {{ end }}
-    <p>MLE / Data Scientist</p>
+    <p>MLE/Data Scientist</p>
   </div>
 
   <div class="header-details">
     <address class="contact-links" aria-label="Contact">
-      <a href="mailto:andyesch@protonmail.com">Email</a>
-      <a href="https://github.com/andy-esch" rel="me">GitHub</a>
-      <a href="https://www.linkedin.com/in/andyeschbacher/" rel="me">LinkedIn</a>
+      <a href="mailto:andyesch@protonmail.com">
+        <img src="{{ $emailIcon.RelPermalink }}" width="16" height="16" alt="" aria-hidden="true">
+        <span>andyesch@protonmail.com</span>
+      </a>
+      <a href="https://github.com/andy-esch" rel="me">
+        <img src="{{ $githubIcon.RelPermalink }}" width="16" height="16" alt="" aria-hidden="true">
+        <span>@andy-esch</span>
+      </a>
+      <a href="https://www.linkedin.com/in/andyeschbacher/" rel="me">
+        <img src="{{ $linkedinIcon.RelPermalink }}" width="16" height="16" alt="" aria-hidden="true">
+        <span>@andyeschbacher</span>
+      </a>
     </address>
     <nav class="site-nav" aria-label="Primary">
       <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
