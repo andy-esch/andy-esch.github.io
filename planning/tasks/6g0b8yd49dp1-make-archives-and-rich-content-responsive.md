@@ -10,6 +10,7 @@ priority: high
 autonomy_level: 4
 tags: [responsive, archives, media]
 created: "2026-08-15"
+updated_at: "2026-08-15"
 ---
 # Make archives and rich content responsive
 
@@ -34,3 +35,7 @@ Handle content shapes that stress the general layout so archive and project page
 
 - Depends on "Implement the mobile-first layout and type system".
 - Epic [02-responsive-and-accessible-experience](../epics/02-responsive-and-accessible-experience.md)
+
+## Landed implementation progress (2026-08-15)
+
+The generated presentations archive now stacks venue metadata and dates at the mobile breakpoint, allows long descriptions and destinations to wrap within the content column, and retains a flat, scannable wide-screen layout faithful to the prior site. The two approved routes currently contain no project images, maps, code blocks, or embeds, so those cases remain conditional on later page-inclusion decisions. Keep this task open until the refreshed responsive matrix and cross-browser checks confirm the deployed archive.

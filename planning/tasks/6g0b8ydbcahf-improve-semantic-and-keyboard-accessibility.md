@@ -10,6 +10,7 @@ priority: high
 autonomy_level: 4
 tags: [accessibility, html, keyboard]
 created: "2026-08-15"
+updated_at: "2026-08-15"
 ---
 # Improve semantic and keyboard accessibility
 
@@ -35,3 +36,7 @@ Make the site understandable and operable through document semantics, the keyboa
 
 - Applies to the consolidated shared layout and responsive components.
 - Epic [02-responsive-and-accessible-experience](../epics/02-responsive-and-accessible-experience.md)
+
+## Landed implementation progress (2026-08-15)
+
+The shared Hugo shell now provides language and viewport metadata, one page H1, coherent section headings, header/nav/main structure, a skip link, visible focus styling, named contact and navigation links, and decorative treatment for the contact SVGs beside readable labels. This task remains open for measured contrast and touch-target review, full keyboard traversal, 200 percent zoom/text enlargement, and automated accessibility checks.
