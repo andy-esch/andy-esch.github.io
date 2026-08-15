@@ -1,0 +1,13 @@
+baseURL = 'https://andyes.ch/'
+locale = 'en-US'
+title = 'Andy Eschbacher'
+
+disableKinds = ['rss', 'sitemap', 'taxonomy', 'term']
+disableHugoGeneratorInject = true
+
+[params]
+  description = 'Personal site of Andy Eschbacher, a machine learning engineer and data scientist.'
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'

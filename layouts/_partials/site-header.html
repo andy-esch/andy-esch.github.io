@@ -1,0 +1,25 @@
+{{- $current := . -}}
+<header class="site-header">
+  <div class="identity">
+    {{ if .IsHome }}
+      <h1 class="site-name">Andy Eschbacher</h1>
+    {{ else }}
+      <a class="site-name" href="{{ site.Home.RelPermalink }}">Andy Eschbacher</a>
+    {{ end }}
+    <p>MLE / Data Scientist</p>
+  </div>
+
+  <div class="header-details">
+    <address class="contact-links" aria-label="Contact">
+      <a href="mailto:andyesch@protonmail.com">Email</a>
+      <a href="https://github.com/andy-esch" rel="me">GitHub</a>
+      <a href="https://www.linkedin.com/in/andyeschbacher/" rel="me">LinkedIn</a>
+    </address>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
+      {{ with site.GetPage "/presentations" }}
+        <a href="{{ .RelPermalink }}"{{ if eq $current.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>Presentations</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>
