@@ -1,7 +1,7 @@
 ---
 schema: 1
 id: 6g0b8t4pyvm2
-status: ready-to-start
+status: in-progress
 epic: 01-unify-the-site-foundation
 description: Provide concise instructions for editing content, previewing the site, validating changes, and understanding deployment.
 effort: 2-4 hours
@@ -10,6 +10,8 @@ priority: medium
 autonomy_level: 5
 tags: [documentation, developer-experience]
 created: "2026-08-15"
+updated_at: "2026-08-16"
+started_at: "2026-08-16"
 ---
 # Document the local authoring and build workflow
 
