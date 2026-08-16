@@ -37,4 +37,15 @@ fi
 python3 -m unittest discover -s scripts -p 'test_*.py'
 python3 scripts/check_generated_site.py "${site_dir}"
 
+if [[ ! -d node_modules ]]; then
+  echo "development dependencies are missing; run 'npm ci' before validating" >&2
+  exit 1
+fi
+
+npx --no-install html-validate "${site_dir}/**/*.html"
+echo "validated generated HTML against the HTML5 specification"
+
+node scripts/check_stylesheets.mjs "${site_dir}"
+node scripts/check_browser.mjs "${site_dir}"
+
 echo "validated generated site boundary in ${site_dir}"

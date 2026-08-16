@@ -1,0 +1,20 @@
+{
+  "name": "andyes-ch-site-checks",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Development-only quality gates for the generated andyes.ch artifact. The site itself has no runtime dependency on Node.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check": "bash scripts/check-site.sh"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "csstree-validator": "4.0.1",
+    "html-validate": "11.6.2",
+    "playwright": "1.62.1"
+  }
+}
