@@ -2,131 +2,86 @@
 
 Personal website of Andy Eschbacher: <https://andyes.ch>
 
-The site is generated with the Hugo version pinned in `.hugo-version`. It
-intentionally has no theme, browser JavaScript, or Ruby dependency, and the
-published pages ship no JavaScript. Node is a development-only dependency used
-by the quality gates; nothing in `public/` needs it.
+A Hugo site with no theme and no browser JavaScript. Node is a development-only
+dependency for the quality checks.
 
-Install the pinned standard Hugo binary with Go if it is not already available:
+## Setup
 
 ```sh
 go install github.com/gohugoio/hugo@v$(cat .hugo-version)
-```
-
-Preview locally:
-
-```sh
-hugo server
-```
-
-## Validating the artifact
-
-Install the pinned check dependencies once, then build and validate the exact
-GitHub Pages artifact:
-
-```sh
 npm ci
 npx playwright install --only-shell chromium
-
-hugo build --gc --minify
-bash scripts/check-site.sh
 ```
 
-`scripts/check-site.sh` is the whole gate and runs these checks in order:
-
-| Check | Command | Covers |
-| --- | --- | --- |
-| Boundary | inline in `scripts/check-site.sh` | Expected routes, no source or JavaScript leaking into output, no unsafe HTML in `data/talks.json` |
-| Structure and links | `python3 scripts/check_generated_site.py public` | Document structure, duplicate IDs and attributes, local links, fragments, and HTML/CSS resource targets |
-| HTML specification | `npx html-validate "public/**/*.html"` | HTML5 conformance and WCAG markup rules, configured in `.htmlvalidate.json` |
-| CSS specification | `node scripts/check_stylesheets.mjs public` | Unknown properties and invalid values, checked against the W3C/MDN value definitions |
-| Accessibility and overflow | `node scripts/check_browser.mjs public` | axe-core WCAG 2.0/2.1 A and AA on every route at 320px, 768px, and 1280px, plus no-horizontal-overflow, webfont-loaded, and page-weight-budget assertions |
-
-Every check is offline. External URLs are deliberately reported but not
-requested, so an unrelated third-party outage cannot block a deployment.
-
-The browser check discovers routes from the built artifact instead of a
-hard-coded list, so a new page template is covered as soon as it is built.
-`.htmlvalidate.json` disables only formatting rules that `hugo --minify` legally
-controls — attribute quoting, doctype case, void-element and boolean-attribute
-style, trailing whitespace — and `no-raw-characters` runs in its relaxed mode so
-that a bare `&` fails only when it is genuinely ambiguous, matching the HTML5
-parsing rules.
-
-Pull requests run the same build and validation job in GitHub Actions. Only a
-successful non-PR run is permitted to deploy that validated artifact to GitHub
-Pages.
-
-Only `public/` is deployable. It is generated output and must not be edited or committed.
-
-Retired files live in [`archive/`](archive/) at their original relative paths.
-Hugo never reads them and the validation gate fails if they reach the artifact;
-see [`archive/README.md`](archive/README.md) for what is kept and why.
-
-## Performance budget
-
-Each route must serve under **150 KiB** of uncompressed artifact. The gate
-enforces this per route with a cold cache and prints the actual numbers:
-
-| Route | Weight |
-| --- | ---: |
-| `/` | 78.9 KiB |
-| `/presentations.html` | 93.3 KiB |
-
-Nearly all of that is the two Archivo faces (69.1 KiB combined). GitHub Pages
-compresses HTML, CSS, and SVG on the wire and WOFF2 is already compressed, so
-real transfer is smaller than these numbers — the budget is deliberately
-pessimistic. Raise it in `scripts/check_browser.mjs` only with a reason.
-
-### Fonts
-
-The site ships Archivo Regular (400) and Bold (700) as WOFF2 only, with
-`font-display: swap` and a `"Helvetica Neue", Helvetica, Arial, sans-serif`
-fallback. WOFF2 has near-universal support, so there is no second format.
-`assets/OFL.txt` is the SIL Open Font License covering these faces and must
-ship with them.
-
-The `.woff2` files are committed. They were converted from the upstream Archivo
-TTFs, which are not kept in the repository since they are freely available from
-the [Archivo project](https://github.com/Omnibus-Type/Archivo). To add or
-regenerate a weight:
+## Everyday commands
 
 ```sh
-python3 -m venv /tmp/fontenv && /tmp/fontenv/bin/pip install fonttools brotli
-/tmp/fontenv/bin/python -c '
-from fontTools.ttLib import TTFont
+hugo server                              # preview at localhost:1313
+
+hugo build --gc --minify                 # build the exact deployable artifact
+bash scripts/check-site.sh               # validate it
+```
+
+Run both before pushing. CI runs the same two commands.
+
+## What to edit
+
+| To change | Edit |
+| --- | --- |
+| Homepage bio and sections | `content/_index.md` |
+| Presentations page intro | `content/presentations.md` |
+| Talks and workshops list | `data/talks.json` |
+| Navigation and contact links | `layouts/_partials/site-header.html` |
+| Footer | `layouts/_partials/site-footer.html` |
+| `<head>`, meta tags, page shell | `layouts/baseof.html` |
+| Styles, fonts, colors | `assets/css/site.css` |
+| Site title, description, base URL | `hugo.toml` |
+| Custom domain | `static/CNAME` |
+
+There is no projects route yet; `archive/projects.md` holds the intended
+permalink pending the route decision.
+
+## Layout
+
+| Path | Role |
+| --- | --- |
+| `content/`, `data/`, `layouts/`, `assets/`, `static/` | Source |
+| `public/` | Generated. Never edit or commit. |
+| `archive/` | Retired files at their original paths. Not built. |
+| `scripts/` | Validation |
+
+## Checks
+
+`scripts/check-site.sh` runs all of these. Each is offline — external URLs are
+reported, never requested.
+
+| Check | Command |
+| --- | --- |
+| Routes, leaked source, unsafe data | inline in `scripts/check-site.sh` |
+| Structure, duplicate IDs, local links | `python3 scripts/check_generated_site.py public` |
+| HTML5 conformance | `npx html-validate "public/**/*.html"` |
+| CSS validity | `node scripts/check_stylesheets.mjs public` |
+| axe WCAG 2 A/AA, overflow, fonts, page weight | `node scripts/check_browser.mjs public` |
+
+The browser check loads every route at 320px, 768px, and 1280px, and enforces a
+150 KiB per-route budget.
+
+## Deployment
+
+Pushing to `main` builds, validates, then deploys to GitHub Pages. Pull requests
+build and validate but do not deploy. Only the artifact that passed the checks
+is deployed.
+
+## Dependencies
+
+Renovate opens update PRs for GitHub Actions, npm packages, and the Hugo version
+in `.hugo-version`. Majors come as individual PRs labelled `requires-review`;
+nothing automerges. See `renovate.json`.
+
+Fonts are committed as WOFF2. To regenerate from a TTF:
+
+```sh
+pip install fonttools brotli
+python3 -c 'from fontTools.ttLib import TTFont
 f = TTFont("Archivo-Regular.ttf"); f.flavor = "woff2"; f.save("assets/Archivo-Regular.woff2")'
 ```
-
-Then reference it in `assets/css/site.css` and rebuild. The browser check fails
-if a face does not load, so a bad conversion cannot ship silently.
-
-## Dependency updates
-
-Renovate proposes updates, matching the setup used in this account's other
-repositories. `renovate.json` covers three things:
-
-- **GitHub Actions** in `.github/workflows/static.yml`, held at major-version
-  tags rather than commit SHAs. This is a static personal site with no secrets
-  in the build, so the review cost of digest pinning is not worth it here.
-- **npm devDependencies** for the quality gates. `playwright` and
-  `@axe-core/playwright` are grouped into a single PR because the browser
-  install and the axe integration have to move together.
-- **Hugo**, via a custom manager on `.hugo-version`. That file is a bare version
-  string no built-in manager reads, and the workflow builds its download URL
-  from the same file, so one bump moves local and CI together.
-
-Non-major updates are grouped per manager; majors arrive as individual PRs
-labelled `requires-review`. Nothing automerges. The dependency dashboard issue
-lists everything pending.
-
-To move a dependency by hand, edit `.hugo-version` or run `npm update`, then
-rebuild and revalidate before committing:
-
-```sh
-hugo build --gc --minify
-bash scripts/check-site.sh
-```
-
-Renovate must be enabled for this repository in the GitHub App's settings before
-it will open anything.
