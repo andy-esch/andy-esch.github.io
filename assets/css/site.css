@@ -1,12 +1,12 @@
-{{- $archivoRegular := resources.Get "Archivo-Regular.ttf" | fingerprint -}}
-{{- $archivoBold := resources.Get "Archivo-Bold.ttf" | fingerprint -}}
+{{- $archivoRegular := resources.Get "Archivo-Regular.woff2" | fingerprint -}}
+{{- $archivoBold := resources.Get "Archivo-Bold.woff2" | fingerprint -}}
 
 @font-face {
   font-display: swap;
   font-family: "Archivo";
   font-style: normal;
   font-weight: 400;
-  src: url("{{ $archivoRegular.RelPermalink }}") format("truetype");
+  src: url("{{ $archivoRegular.RelPermalink }}") format("woff2");
 }
 
 @font-face {
@@ -14,7 +14,7 @@
   font-family: "Archivo";
   font-style: normal;
   font-weight: 700;
-  src: url("{{ $archivoBold.RelPermalink }}") format("truetype");
+  src: url("{{ $archivoBold.RelPermalink }}") format("woff2");
 }
 
 :root {

@@ -40,7 +40,7 @@ bash scripts/check-site.sh
 | Structure and links | `python3 scripts/check_generated_site.py public` | Document structure, duplicate IDs and attributes, local links, fragments, and HTML/CSS resource targets |
 | HTML specification | `npx html-validate "public/**/*.html"` | HTML5 conformance and WCAG markup rules, configured in `.htmlvalidate.json` |
 | CSS specification | `node scripts/check_stylesheets.mjs public` | Unknown properties and invalid values, checked against the W3C/MDN value definitions |
-| Accessibility and overflow | `node scripts/check_browser.mjs public` | axe-core WCAG 2.0/2.1 A and AA on every route at 320px, 768px, and 1280px, plus a no-horizontal-overflow assertion |
+| Accessibility and overflow | `node scripts/check_browser.mjs public` | axe-core WCAG 2.0/2.1 A and AA on every route at 320px, 768px, and 1280px, plus no-horizontal-overflow, webfont-loaded, and page-weight-budget assertions |
 
 Every check is offline. External URLs are deliberately reported but not
 requested, so an unrelated third-party outage cannot block a deployment.
@@ -62,6 +62,44 @@ Only `public/` is deployable. It is generated output and must not be edited or c
 Retired files live in [`archive/`](archive/) at their original relative paths.
 Hugo never reads them and the validation gate fails if they reach the artifact;
 see [`archive/README.md`](archive/README.md) for what is kept and why.
+
+## Performance budget
+
+Each route must serve under **150 KiB** of uncompressed artifact. The gate
+enforces this per route with a cold cache and prints the actual numbers:
+
+| Route | Weight |
+| --- | ---: |
+| `/` | 78.9 KiB |
+| `/presentations.html` | 93.3 KiB |
+
+Nearly all of that is the two Archivo faces (69.1 KiB combined). GitHub Pages
+compresses HTML, CSS, and SVG on the wire and WOFF2 is already compressed, so
+real transfer is smaller than these numbers — the budget is deliberately
+pessimistic. Raise it in `scripts/check_browser.mjs` only with a reason.
+
+### Fonts
+
+The site ships Archivo Regular (400) and Bold (700) as WOFF2 only, with
+`font-display: swap` and a `"Helvetica Neue", Helvetica, Arial, sans-serif`
+fallback. WOFF2 has near-universal support, so there is no second format.
+`assets/OFL.txt` is the SIL Open Font License covering these faces and must
+ship with them.
+
+The `.woff2` files are committed. They were converted from the upstream Archivo
+TTFs, which are not kept in the repository since they are freely available from
+the [Archivo project](https://github.com/Omnibus-Type/Archivo). To add or
+regenerate a weight:
+
+```sh
+python3 -m venv /tmp/fontenv && /tmp/fontenv/bin/pip install fonttools brotli
+/tmp/fontenv/bin/python -c '
+from fontTools.ttLib import TTFont
+f = TTFont("Archivo-Regular.ttf"); f.flavor = "woff2"; f.save("assets/Archivo-Regular.woff2")'
+```
+
+Then reference it in `assets/css/site.css` and rebuild. The browser check fails
+if a face does not load, so a bad conversion cannot ship silently.
 
 ## Dependency updates
 

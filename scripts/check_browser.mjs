@@ -30,6 +30,20 @@ const VIEWPORTS = [
 
 const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"];
 
+/**
+ * Per-route page-weight budget, in bytes of uncompressed artifact.
+ *
+ * The heaviest route currently serves about 93 KiB, nearly all of it the two
+ * WOFF2 faces. The ceiling leaves room for real content growth while still
+ * catching a regression that matters: reverting the fonts to TTF alone would
+ * push the archive route past 200 KiB. GitHub Pages compresses HTML, CSS, and
+ * SVG on the wire and WOFF2 is already compressed, so a passing number here is
+ * strictly pessimistic against what visitors actually download.
+ */
+const PAGE_WEIGHT_BUDGET = 150 * 1024;
+
+const WEBFONT_FAMILY = "Archivo";
+
 const CONTENT_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".html": "text/html; charset=utf-8",
@@ -43,8 +57,16 @@ const CONTENT_TYPES = {
   ".woff2": "font/woff2",
 };
 
-/** Serve the artifact read-only, refusing any path that escapes the site root. */
+/**
+ * Serve the artifact read-only, refusing any path that escapes the site root.
+ *
+ * The server also tallies the bytes it hands out. Counting here rather than in
+ * the browser keeps the number deterministic — it is exactly what the artifact
+ * would put on the wire, with no cache or protocol overhead mixed in.
+ */
 function startServer(siteDir) {
+  const meter = { bytes: 0 };
+
   const server = createServer((request, response) => {
     const requestPath = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
     let target = resolve(join(siteDir, requestPath));
@@ -61,6 +83,7 @@ function startServer(siteDir) {
       return;
     }
 
+    meter.bytes += statSync(target).size;
     response.writeHead(200, {
       "content-type": CONTENT_TYPES[extname(target).toLowerCase()] ?? "application/octet-stream",
     });
@@ -70,9 +93,45 @@ function startServer(siteDir) {
   return new Promise((resolveServer) => {
     server.listen(0, "127.0.0.1", () => {
       const { port } = server.address();
-      resolveServer({ server, origin: `http://127.0.0.1:${port}` });
+      resolveServer({ server, origin: `http://127.0.0.1:${port}`, meter });
     });
   });
+}
+
+/**
+ * Confirm the webfont actually loaded and is what the page renders with.
+ *
+ * Without this a corrupt or misreferenced font file is invisible: the browser
+ * silently falls back to the next family in the stack, every other check still
+ * passes, and the site quietly ships in Helvetica.
+ */
+async function fontProblems(page) {
+  return page.evaluate(async (family) => {
+    await document.fonts.ready;
+    const problems = [];
+    // Chromium normalizes FontFace.family to lowercase and may keep the quotes
+    // from the stylesheet, so neither case nor quoting can be relied on here.
+    const wanted = family.replace(/"/g, "").toLowerCase();
+    const loaded = [...document.fonts].filter(
+      (face) => face.family.replace(/"/g, "").toLowerCase() === wanted,
+    );
+
+    if (loaded.length === 0) {
+      problems.push(`no @font-face for ${family} reached the browser`);
+      return problems;
+    }
+    for (const face of loaded) {
+      if (face.status !== "loaded") {
+        problems.push(`${family} ${face.weight} failed to load (status: ${face.status})`);
+      }
+    }
+    for (const weight of ["400", "700"]) {
+      if (!document.fonts.check(`${weight} 1rem "${family}"`)) {
+        problems.push(`${family} ${weight} is not usable for rendering`);
+      }
+    }
+    return problems;
+  }, WEBFONT_FAMILY);
 }
 
 function routesFor(siteDir) {
@@ -126,9 +185,10 @@ async function main() {
     return 1;
   }
 
-  const { server, origin } = await startServer(siteDir);
+  const { server, origin, meter } = await startServer(siteDir);
   const browser = await chromium.launch({ channel: "chromium-headless-shell" });
   const failures = [];
+  const weights = [];
   let checks = 0;
 
   try {
@@ -152,12 +212,37 @@ async function main() {
           failures.push(`${label}: ${describeViolation(violation)}`);
         }
 
+        for (const problem of await fontProblems(page)) {
+          failures.push(`${label}: ${problem}`);
+        }
+
         for (const element of await overflowingElements(page)) {
           failures.push(`${label}: horizontal overflow: ${element}`);
         }
         checks += 1;
       }
 
+      await context.close();
+    }
+
+    // Weight is measured in its own pass, one fresh context per route, so no
+    // route is scored against a cache warmed by the previous one.
+    for (const route of routes) {
+      const context = await browser.newContext();
+      const page = await context.newPage();
+
+      meter.bytes = 0;
+      await page.goto(`${origin}${route}`, { waitUntil: "load" });
+      await page.evaluate(() => document.fonts.ready);
+      const bytes = meter.bytes;
+      weights.push({ route, bytes });
+
+      if (bytes > PAGE_WEIGHT_BUDGET) {
+        failures.push(
+          `${route}: page weight ${(bytes / 1024).toFixed(1)} KiB exceeds the ` +
+            `${(PAGE_WEIGHT_BUDGET / 1024).toFixed(0)} KiB budget`,
+        );
+      }
       await context.close();
     }
   } finally {
@@ -177,7 +262,16 @@ async function main() {
     `checked ${routes.length} route(s) across ${VIEWPORTS.length} viewport(s) ` +
       `(${checks} page loads) in ${relative(process.cwd(), siteDir) || siteDir}`,
   );
-  console.log(`no ${AXE_TAGS.join("/")} violations and no horizontal overflow`);
+  console.log(
+    `no ${AXE_TAGS.join("/")} violations, no horizontal overflow, ` +
+      `and ${WEBFONT_FAMILY} loaded in every run`,
+  );
+  for (const { route, bytes } of weights) {
+    console.log(
+      `  ${route} — ${(bytes / 1024).toFixed(1)} KiB ` +
+        `of the ${(PAGE_WEIGHT_BUDGET / 1024).toFixed(0)} KiB budget`,
+    );
+  }
   return 0;
 }
 
