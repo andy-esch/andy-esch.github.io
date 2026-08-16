@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "html-validate:recommended",
+    "html-validate:document",
+    "html-validate:a11y"
+  ],
+  "rules": {
+    "attr-quotes": "off",
+    "attribute-boolean-style": "off",
+    "doctype-style": "off",
+    "no-raw-characters": ["error", { "relaxed": true }],
+    "no-trailing-whitespace": "off",
+    "void-style": "off"
+  }
+}

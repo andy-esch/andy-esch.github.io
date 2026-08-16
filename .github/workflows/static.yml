@@ -17,6 +17,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install pinned check dependencies
+        run: npm ci
+
+      - name: Install pinned Chromium
+        run: npx --no-install playwright install --with-deps --only-shell chromium
+
       - name: Install pinned Hugo
         shell: bash
         run: |
