@@ -4,6 +4,7 @@ id: 6g0bddxkqxmb
 bucket: open
 area: route-asset-inventory
 date: "2026-08-15"
+updated_at: "2026-08-16"
 ---
 # Audit: route-asset-inventory — 2026-08-15
 
@@ -139,7 +140,7 @@ Both primary pages force an 840 pixel inline width and fixed 126 pixel header he
 
 **Recommendation:** Replace fixed dimensions with a mobile-first intrinsic layout and validate the agreed viewport matrix.
 
-#### H4. Production and dormant Jekyll sources have diverged  · **Status:** in-progress
+#### H4. Production and dormant Jekyll sources have diverged  · **Status:** landed
 
 **File:** _layouts/default.html:1 | **Component:** architecture
 **Effort:** L · **Urgency:** soon
@@ -197,3 +198,37 @@ All remediation work was already represented in the planning backlog before this
 - **H5 — in progress:** Production no longer loads Bootstrap or browser JavaScript, and only the required Archivo weights and contact icons are emitted. Unused source assets remain in the repository for the dedicated cleanup and performance tasks.
 - **H6 — in progress:** The generated pages now have language and viewport metadata, coherent headings, header/nav/main structure, a skip link, visible focus styling, and decorative icon treatment. Contrast, touch-target, keyboard, zoom, and automated accessibility validation remain outstanding.
 - **H7 — landed:** After the successful main-branch deployment, `https://andyes.ch/bacher/` returns 404 as approved.
+
+## Asset cleanup reconciliation (2026-08-16)
+
+- **H4 — landed.** The dormant Jekyll-era sources that remained after the Hugo
+  migration were cleared. `_includes/`, `_layouts/`, `_sass/`,
+  `_data/workshops.json`, `assets/css/style.scss`, `assets/js/scale.fix.js`, the
+  ten duplicated `assets/*.html` wrappers, and `assets/icon-twitter.svg` moved to
+  `archive/` at their original relative paths. No parallel hand-written and
+  Jekyll-era forms remain, and the README no longer documents the inactive
+  architecture. The generated artifact was hashed before and after the move and
+  is byte-for-byte identical across all nine files.
+
+- **H5 — in progress, two of three parts resolved.** The Bootstrap portion was
+  already moot: a case-insensitive search of every HTML, CSS, SCSS, JS, Markdown,
+  and TOML file found no Bootstrap anywhere in the repository, and the Hugo pages
+  ship no JavaScript at all. The roughly 1.7 MiB of dormant weight is now
+  resolved — `assets/fonts/Noto-Sans-*` (536K) and six unused Archivo weights
+  (588K) were deleted outright as freely re-downloadable OFL fonts, while
+  `assets/img/` was archived as personal originals. `assets/` now holds exactly
+  seven files: six referenced by the build plus `OFL.txt`, which licenses the
+  shipped Archivo family and must be retained. The remaining recommendation,
+  optimizing the surviving fonts and images, belongs to
+  [Optimize fonts images and page performance](../tasks/6g0b99xw3kaj-optimize-fonts-images-and-page-performance.md)
+  and is untouched here — this cleanup deliberately changed no shipped bytes.
+
+- **H2 — unchanged and now cross-referenced.** `projects.md` and `404.md` were
+  archived rather than deleted precisely because they are the only surviving
+  record of the intended `/projects/` and `/404.html` permalinks.
+  `archive/README.md` links back to this finding and to the information
+  architecture and route-recovery tasks, and states that they must not be deleted
+  until the route contract is settled.
+
+`scripts/check-site.sh` gained `archive` in its artifact tripwire list, verified
+by planting `public/archive/leaked.txt` and confirming the build fails.

@@ -59,6 +59,10 @@ Pages.
 
 Only `public/` is deployable. It is generated output and must not be edited or committed.
 
+Retired files live in [`archive/`](archive/) at their original relative paths.
+Hugo never reads them and the validation gate fails if they reach the artifact;
+see [`archive/README.md`](archive/README.md) for what is kept and why.
+
 ## Dependency updates
 
 Renovate proposes updates, matching the setup used in this account's other
