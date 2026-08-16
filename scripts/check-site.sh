@@ -22,7 +22,7 @@ if [[ "${html_count}" != "2" ]]; then
   exit 1
 fi
 
-for forbidden in bacher planning projects.md 404.md _data _layouts _includes; do
+for forbidden in bacher planning archive projects.md 404.md _data _layouts _includes; do
   if [[ -e "${site_dir}/${forbidden}" ]]; then
     echo "source-only or retired path leaked into output: ${site_dir}/${forbidden}" >&2
     exit 1

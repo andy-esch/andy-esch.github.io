@@ -1,7 +1,7 @@
 ---
 schema: 1
 id: 6g0b99xd03m5
-status: in-progress
+status: completed
 epic: 04-harden-delivery-and-discoverability
 description: Upgrade official Pages workflow actions, pin immutable revisions, retain least-privilege permissions, and automate future update proposals.
 effort: 3-5 hours
@@ -12,6 +12,7 @@ tags: [github-actions, security, dependencies]
 created: "2026-08-15"
 updated_at: "2026-08-16"
 started_at: "2026-08-16"
+completed_at: "2026-08-16"
 ---
 # Update and pin GitHub Actions dependencies
 
@@ -24,8 +25,8 @@ Modernize the deployment supply chain and make workflow dependency changes expli
 - [x] Checkout, Configure Pages, Upload Pages Artifact, and Deploy Pages use supported compatible releases.
 - [x] Each action is held at a verified major-version tag, with Renovate proposing upgrades. (Amended 2026-08-16: the original criterion required full-length commit SHAs. The owner scoped that out for this low-stakes static site, matching the `desirelines` precedent.)
 - [x] Job and workflow permissions are reduced to the minimum needed for build and deploy responsibilities.
-- [ ] Action compatibility, runtime requirements, and artifact-version coupling are verified in an actual workflow run.
-- [ ] Dependabot or an equivalent repository-native mechanism proposes future GitHub Actions updates on a reasonable cadence.
+- [x] Action compatibility, runtime requirements, and artifact-version coupling are verified in an actual workflow run.
+- [x] Dependabot or an equivalent repository-native mechanism proposes future GitHub Actions updates on a reasonable cadence.
 - [x] Update documentation explains how to verify and refresh pinned SHAs.
 
 ## Out of scope
@@ -89,3 +90,34 @@ README gained a "Dependency updates" section covering what is tracked, the
 grouping rules, how to move a dependency by hand, and the fact that Renovate
 must be enabled for this repository in the GitHub App settings before it opens
 anything.
+
+## Live verification (2026-08-16)
+
+Merged as PR #14. Renovate was enabled on the repository and ran immediately,
+which replaced the earlier indirect evidence with real behavior.
+
+**The custom manager works.** PR #15 changes `.hugo-version` from `0.164.0` to
+`0.165.0` — a single-line diff on a file no built-in manager reads. It landed in
+branch `renovate/all-non-major-(regex)`, confirming both that the regex manager
+extracts the version and that a Hugo `0.x` minor is classified as non-major and
+grouped per manager as intended.
+
+**The major-review rule works.** PR #16 raises `node-version` in the Pages
+workflow from `"22"` to `"24"` and carries the `requires-review` label as an
+individual PR, not folded into the group. Renovate picked this up from the
+`setup-node` step via the github-actions manager, which was not anticipated when
+the config was written but is correct and welcome.
+
+**Dependency Dashboard** issue #17 was opened, satisfying `:dependencyDashboard`.
+
+**Workflow runs.** The `main` run for the PR #14 merge (`31943411901`) succeeded,
+verifying action compatibility, runtime requirements, and the
+`upload-pages-artifact@v5` / `deploy-pages@v5` coupling. Both Renovate PRs also
+pass the full quality gate with `deploy` correctly skipped: PR #16 build passed
+in 32s, and PR #15 build passed in 50s. The latter is the more useful signal —
+Hugo 0.165.0 regenerates the artifact and still clears strict HTML structure,
+HTML5 conformance, CSS specification validation, axe WCAG 2.0/2.1 A and AA, and
+the no-horizontal-overflow assertion. PR #16 additionally proves the check
+scripts run on Node 24, not just the Node 22 they were written against.
+
+Neither Renovate PR is merged here; both are left for the owner to review.
