@@ -58,3 +58,33 @@ successful non-PR run is permitted to deploy that validated artifact to GitHub
 Pages.
 
 Only `public/` is deployable. It is generated output and must not be edited or committed.
+
+## Dependency updates
+
+Renovate proposes updates, matching the setup used in this account's other
+repositories. `renovate.json` covers three things:
+
+- **GitHub Actions** in `.github/workflows/static.yml`, held at major-version
+  tags rather than commit SHAs. This is a static personal site with no secrets
+  in the build, so the review cost of digest pinning is not worth it here.
+- **npm devDependencies** for the quality gates. `playwright` and
+  `@axe-core/playwright` are grouped into a single PR because the browser
+  install and the axe integration have to move together.
+- **Hugo**, via a custom manager on `.hugo-version`. That file is a bare version
+  string no built-in manager reads, and the workflow builds its download URL
+  from the same file, so one bump moves local and CI together.
+
+Non-major updates are grouped per manager; majors arrive as individual PRs
+labelled `requires-review`. Nothing automerges. The dependency dashboard issue
+lists everything pending.
+
+To move a dependency by hand, edit `.hugo-version` or run `npm update`, then
+rebuild and revalidate before committing:
+
+```sh
+hugo build --gc --minify
+bash scripts/check-site.sh
+```
+
+Renovate must be enabled for this repository in the GitHub App's settings before
+it will open anything.

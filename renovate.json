@@ -1,0 +1,37 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits"
+  ],
+  "postUpdateOptions": ["npmDedupe"],
+  "packageRules": [
+    {
+      "description": "Group all non-major updates by manager — keeps majors as individual PRs for review. Specific rules below override per Renovate's last-rule-wins semantics.",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "all non-major ({{manager}})"
+    },
+    {
+      "description": "Flag major version bumps for human review. automerge is already false by default; the label surfaces majors on the dashboard.",
+      "matchUpdateTypes": ["major"],
+      "labels": ["requires-review"]
+    },
+    {
+      "description": "Keep the Playwright pins in one PR. @axe-core/playwright declares playwright-core as a peer dependency, and CI installs the browser with `playwright install`, so the runner, the browser build, and the axe integration must move together. Must stay after the group-by-manager rule to win under last-rule-wins.",
+      "matchPackageNames": ["playwright", "@axe-core/playwright"],
+      "groupName": "playwright"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Track the Hugo release pinned in .hugo-version — a bare version string no built-in manager sees. The Pages workflow reads this same file to build its download URL, so one bump moves the local toolchain and CI together.",
+      "managerFilePatterns": [".hugo-version"],
+      "matchStrings": ["(?<currentValue>\\d+\\.\\d+\\.\\d+)"],
+      "depNameTemplate": "gohugoio/hugo",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.+)$"
+    }
+  ]
+}
