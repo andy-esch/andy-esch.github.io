@@ -1,0 +1,67 @@
+# Ordinary search engines: crawl everything.
+User-agent: *
+Allow: /
+
+# AI training crawlers: opted out. These collect content to train models and
+# send no traffic back. Google-Extended and Applebot-Extended are training-only
+# signals — blocking them does not affect Google Search, Siri, or Spotlight.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: omgili
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+User-agent: Timpibot
+Disallow: /
+
+# AI search crawlers are deliberately allowed: they cite the site with a link
+# rather than training on it. Uncomment to opt out of those results too.
+# User-agent: OAI-SearchBot
+# Disallow: /
+#
+# User-agent: Claude-SearchBot
+# Disallow: /
+#
+# User-agent: Claude-User
+# Disallow: /
+#
+# User-agent: PerplexityBot
+# Disallow: /
+#
+# User-agent: YouBot
+# Disallow: /
+
+# robots.txt is voluntary. Compliant crawlers honour it; others ignore it.
