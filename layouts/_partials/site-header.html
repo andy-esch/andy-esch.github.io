@@ -13,11 +13,31 @@
   </div>
 
   <div class="header-details">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
+      {{ with site.GetPage "/presentations" }}
+        <a href="{{ .RelPermalink }}"{{ if eq $current.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>Presentations</a>
+      {{ end }}
+      <a href="https://desirelines.andyes.ch">desire/lines</a>
+    </nav>
     <address class="contact-links">
-      <a href="mailto:hi@andyes.ch">
+      <p class="contact-email">
         <img src="{{ $emailIcon.RelPermalink }}" width="16" height="16" alt="" aria-hidden="true">
-        <span>hi@andyes.ch</span>
-      </a>
+        <span id="contact-email-value">hi@andyes.ch</span>
+        <button type="button" class="copy-email" hidden
+                data-copy="hi@andyes.ch" aria-label="Copy email address">
+          <svg class="icon-copy" viewBox="0 0 16 16" width="14" height="14" fill="none"
+               stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
+            <rect x="1.7" y="1.7" width="8.6" height="8.6" rx="1.3"/>
+            <rect x="5.7" y="5.7" width="8.6" height="8.6" rx="1.3" fill="var(--identity)"/>
+          </svg>
+          <svg class="icon-done" viewBox="0 0 16 16" width="14" height="14" fill="none"
+               stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M2.5 8.5l3.5 3.5 7.5-8"/>
+          </svg>
+        </button>
+      </p>
       <a href="https://github.com/andy-esch" rel="me">
         <img src="{{ $githubIcon.RelPermalink }}" width="16" height="16" alt="" aria-hidden="true">
         <span>@andy-esch</span>
@@ -27,11 +47,25 @@
         <span>@andyeschbacher</span>
       </a>
     </address>
-    <nav class="site-nav" aria-label="Primary">
-      <a href="{{ site.Home.RelPermalink }}"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
-      {{ with site.GetPage "/presentations" }}
-        <a href="{{ .RelPermalink }}"{{ if eq $current.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>Presentations</a>
-      {{ end }}
-    </nav>
   </div>
 </header>
+{{- /* Progressive enhancement: the address is readable text on its own, and the
+       copy button stays hidden unless the Clipboard API is actually available. */ -}}
+<script>
+  (function () {
+    if (!navigator.clipboard) return;
+    document.querySelectorAll(".copy-email").forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener("click", function () {
+        navigator.clipboard.writeText(button.dataset.copy).then(function () {
+          button.classList.add("is-copied");
+          button.setAttribute("aria-label", "Email address copied");
+          setTimeout(function () {
+            button.classList.remove("is-copied");
+            button.setAttribute("aria-label", "Copy email address");
+          }, 2000);
+        });
+      });
+    });
+  })();
+</script>

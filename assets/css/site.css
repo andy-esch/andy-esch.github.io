@@ -26,7 +26,9 @@
   --teaching: #85aab1;
   --projects: #ed8238;
   --footer: #aea9a4;
-  --focus: #1f5d91;
+  /* Same hue family as --teaching, darkened to clear 3:1 against the gold
+     header (4.0:1) and the page background (5.1:1) for focus visibility. */
+  --focus: #3d5f66;
   font-family: Archivo, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -80,7 +82,8 @@ a:focus-visible {
   align-items: center;
   background: var(--identity);
   display: grid;
-  grid-template-columns: minmax(0, 8fr) minmax(10rem, 3fr);
+  /* The details column must stay wide enough for the nav on one line. */
+  grid-template-columns: minmax(0, 8fr) minmax(13rem, 3fr);
   min-height: 7.875rem;
   padding: 0.75rem;
   width: 91.6667%;
@@ -117,17 +120,77 @@ a:focus-visible {
   gap: 0.15rem;
 }
 
+/* position keeps these above the copy button's absolutely positioned tap
+   target, which overhangs into this row and would otherwise swallow clicks. */
 .contact-links a {
   align-items: center;
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 1rem minmax(0, 1fr);
+  position: relative;
 }
 
 .contact-links img {
   display: block;
   height: 1rem;
   width: 1rem;
+}
+
+.contact-email {
+  align-items: center;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1rem auto auto;
+  justify-content: start;
+  margin: 0;
+}
+
+/* The button matches the 1.125rem text line box so the email row is exactly as
+   tall as the other contact rows; the ::after below restores a 28px tap target
+   without letting it affect layout. margin-left cancels the button's internal
+   slack so the gap to the address matches the icon-to-text gap elsewhere. */
+.copy-email {
+  align-items: center;
+  background: none;
+  border: 0;
+  border-radius: 0.1875rem;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  height: 1.125rem;
+  justify-items: center;
+  margin-left: -0.125rem;
+  padding: 0;
+  position: relative;
+  width: 1.125rem;
+}
+
+.copy-email::after {
+  content: "";
+  inset: -0.3125rem;
+  position: absolute;
+}
+
+.copy-email:hover {
+  background: rgb(0 0 0 / 8%);
+}
+
+.copy-email:focus-visible {
+  outline: 0.2rem solid var(--focus);
+  outline-offset: -0.1rem;
+}
+
+.copy-email svg {
+  grid-area: 1 / 1;
+}
+
+.copy-email .icon-done,
+.copy-email.is-copied .icon-copy {
+  display: none;
+}
+
+.copy-email.is-copied .icon-done {
+  display: block;
 }
 
 .site-nav {
@@ -271,22 +334,30 @@ a:focus-visible {
   width: 91.6667%;
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 52rem) {
   .site-frame {
     margin: 0;
     width: 100%;
   }
 
   .site-header {
-    gap: 1rem;
+    gap: 0.75rem;
     grid-template-columns: 1fr;
     min-height: 0;
-    padding: 1rem;
+    padding: 0.875rem;
     width: 100%;
   }
 
+  .header-details {
+    gap: 0.5rem;
+  }
+
+  .contact-links {
+    gap: 0.05rem;
+  }
+
   .site-name {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.75rem, 8vw, 3rem);
   }
 
   .identity p {
