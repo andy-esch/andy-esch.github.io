@@ -2,8 +2,8 @@
 
 Personal website of Andy Eschbacher: <https://andyes.ch>
 
-A Hugo site with no theme and no browser JavaScript. Node is a development-only
-dependency for the quality checks.
+A Hugo site with no theme. Node is a development-only dependency for the quality
+checks.
 
 ## Setup
 
