@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import posixpath
 import re
 import sys
@@ -75,6 +76,10 @@ class GeneratedHTMLParser(HTMLParser):
         self.errors: list[str] = []
         self.title_parts: list[str] = []
         self._inside_title = False
+        self.meta: dict[str, str] = {}
+        self.link_rels: set[str] = set()
+        self.ld_json: list[str] = []
+        self._inside_ld_json = False
 
     def handle_decl(self, decl: str) -> None:
         if decl.strip().lower() == "doctype html":
@@ -114,6 +119,15 @@ class GeneratedHTMLParser(HTMLParser):
             if canonical_host:
                 self.document.canonical_hosts.add(canonical_host.lower())
 
+        if tag == "meta":
+            key = attributes.get("name") or attributes.get("property")
+            if key:
+                self.meta[key.lower()] = attributes.get("content") or ""
+        if tag == "link":
+            self.link_rels.update((attributes.get("rel") or "").lower().split())
+        if tag == "script" and (attributes.get("type") or "").lower() == "application/ld+json":
+            self._inside_ld_json = True
+
         if tag == "html" and not attributes.get("lang"):
             self._error("<html> must have a lang attribute")
         if tag == "title":
@@ -144,10 +158,14 @@ class GeneratedHTMLParser(HTMLParser):
             )
         if tag == "title":
             self._inside_title = False
+        if tag == "script":
+            self._inside_ld_json = False
 
     def handle_data(self, data: str) -> None:
         if self._inside_title:
             self.title_parts.append(data)
+        if self._inside_ld_json:
+            self.ld_json.append(data)
 
     def close(self) -> None:
         super().close()
@@ -164,6 +182,20 @@ class GeneratedHTMLParser(HTMLParser):
                 self.errors.append(f"expected one <{tag}>; found {self.tags[tag]}")
         if not "".join(self.title_parts).strip():
             self.errors.append("<title> must not be empty")
+
+        for key in ("description", "og:title", "og:description", "og:url", "twitter:card"):
+            if not self.meta.get(key, "").strip():
+                self.errors.append(f"missing or empty <meta> {key}")
+        for rel in ("canonical", "icon"):
+            if rel not in self.link_rels:
+                self.errors.append(f"missing <link rel={rel}>")
+        for block in self.ld_json:
+            if not block.strip():
+                continue
+            try:
+                json.loads(block)
+            except ValueError as error:
+                self.errors.append(f"invalid application/ld+json: {error}")
 
     def _error(self, message: str) -> None:
         line, _ = self.getpos()
