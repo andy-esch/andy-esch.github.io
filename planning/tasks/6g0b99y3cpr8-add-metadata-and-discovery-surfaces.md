@@ -27,7 +27,7 @@ Ensure each public page is described accurately when indexed, bookmarked, or sha
 - [x] Open Graph and relevant social-card metadata produce a useful preview with an approved image or intentional text-only fallback.
 - [x] Favicon and application icon assets cover common modern browser needs without unnecessary variants.
 - [x] Valid Person structured data represents only factual approved identity, role, and profile destinations.
-- [x] Sitemap and robots guidance. (Resolved 2026-08-17: both declined by the owner. A sitemap for two routes adds nothing and would need rewriting once the H2 route contract settles; `disableKinds` in `hugo.toml` keeps it off. A robots.txt is also pointless here — default crawling is the desired behaviour and the boundary gate already keeps source out of the artifact, so there is nothing to disallow. Revisit robots.txt only as an AI-crawler opt-out, which is a policy decision.)
+- [x] Sitemap and robots guidance. (Resolved 2026-08-17: sitemap declined by the owner — two routes make it pointless and it would need rewriting once the H2 route contract settles, so `disableKinds` keeps it off. `static/robots.txt` was added as an AI-crawler opt-out at the owner's request.)
 - [x] Metadata output is validated on representative pages.
 
 ## Out of scope
@@ -76,3 +76,20 @@ the canonical, and corrupting the JSON-LD each fail with a precise message. Two
 unit tests were added for the new assertions, and the existing fixture was
 extended — it initially failed because it referenced `/favicon.svg` without
 creating it, which was the reference checker working correctly.
+
+## robots.txt (2026-08-17)
+
+Added `static/robots.txt` as an AI-crawler opt-out. It distinguishes training
+crawlers from AI search crawlers: training bots (GPTBot, ClaudeBot,
+anthropic-ai, CCBot, Google-Extended, Applebot-Extended, meta-externalagent,
+Bytespider, Omgilibot, omgili, Diffbot, cohere-ai, ImagesiftBot, Timpibot) are
+disallowed because they send no traffic back, while AI search crawlers
+(OAI-SearchBot, Claude-SearchBot, Claude-User, PerplexityBot, YouBot) stay
+allowed because they cite the site with a link — blocking them would cut against
+a portfolio site being found. Those are listed commented-out for a one-step
+full opt-out. `Google-Extended` and `Applebot-Extended` are training-only
+signals, so this does not affect Google Search, Siri, or Spotlight.
+
+Verified with Python `urllib.robotparser` against the built file: Googlebot and
+Bingbot can fetch `/`, every training crawler cannot, and the AI search
+crawlers can. robots.txt is voluntary and the file says so.
