@@ -64,6 +64,8 @@
             button.classList.remove("is-copied");
             button.setAttribute("aria-label", "Copy email address");
           }, 2000);
+        }, function () {
+          button.setAttribute("aria-label", "Copy failed \u2014 select the address instead");
         });
       });
     });
