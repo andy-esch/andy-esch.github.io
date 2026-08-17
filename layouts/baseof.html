@@ -3,9 +3,40 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ .Description | default site.Params.description }}">
-    <title>{{ if .IsHome }}{{ site.Title }} · MLE and data scientist{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    {{- $description := .Description | default site.Params.description -}}
+    {{- $title := cond .IsHome (printf "%s · MLE and data scientist" site.Title) (printf "%s · %s" .Title site.Title) -}}
+    <meta name="description" content="{{ $description }}">
+    <title>{{ $title }}</title>
     <link rel="canonical" href="{{ .Permalink }}">
+    <meta name="theme-color" content="#dec367">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    {{- /* Text-only social cards: the site ships no images, so summary rather
+           than summary_large_image, and no og:image. */}}
+    <meta property="og:type" content="{{ cond .IsHome "website" "article" }}">
+    <meta property="og:site_name" content="{{ site.Title }}">
+    <meta property="og:title" content="{{ $title }}">
+    <meta property="og:description" content="{{ $description }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:locale" content="{{ site.Language.Locale }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ $title }}">
+    <meta name="twitter:description" content="{{ $description }}">
+    {{- /* Person entity on the home page only, so the identity is asserted once.
+           Email is deliberately omitted: it is already on the page as text, and
+           repeating it here would make it trivially machine-harvestable. */}}
+    {{- if .IsHome }}
+      {{- $person := dict
+        "@context" "https://schema.org"
+        "@type" "Person"
+        "name" "Andy Eschbacher"
+        "url" site.BaseURL
+        "jobTitle" "Staff Machine Learning Engineer"
+        "worksFor" (dict "@type" "Organization" "name" "Ethyca" "url" "https://ethyca.com/")
+        "sameAs" (slice "https://github.com/andy-esch" "https://www.linkedin.com/in/andyeschbacher/")
+      -}}
+      <script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+    {{- end }}
     {{- with resources.Get "css/site.css" | resources.ExecuteAsTemplate "css/site.css" . | minify | fingerprint }}
       <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
     {{- end }}

@@ -15,8 +15,14 @@ DOCUMENT = """<!doctype html>
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
+  <meta name="description" content="Test description">
   <title>Test</title>
   <link rel="canonical" href="https://example.test{route}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="Test">
+  <meta property="og:description" content="Test description">
+  <meta property="og:url" content="https://example.test{route}">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="/site.css">
 </head>
 <body><main id="main">{content}</main></body>
@@ -47,6 +53,7 @@ class GeneratedSiteCheckTest(unittest.TestCase):
             encoding="utf-8",
         )
         (self.site_dir / "asset.svg").write_text("<svg></svg>", encoding="utf-8")
+        (self.site_dir / "favicon.svg").write_text("<svg></svg>", encoding="utf-8")
 
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
@@ -83,6 +90,29 @@ class GeneratedSiteCheckTest(unittest.TestCase):
             encoding="utf-8",
         )
         self.assertTrue(any("missing fragment #absent" in error for error in self.validate()))
+
+    def test_missing_social_metadata_fails(self) -> None:
+        index = self.site_dir / "index.html"
+        index.write_text(
+            index.read_text(encoding="utf-8").replace(
+                '<meta property="og:url" content="https://example.test/">', ""
+            ),
+            encoding="utf-8",
+        )
+        self.assertTrue(any("og:url" in error for error in self.validate()))
+
+    def test_invalid_structured_data_fails(self) -> None:
+        index = self.site_dir / "index.html"
+        index.write_text(
+            index.read_text(encoding="utf-8").replace(
+                "</head>",
+                '<script type="application/ld+json">{"broken":}</script></head>',
+            ),
+            encoding="utf-8",
+        )
+        self.assertTrue(
+            any("invalid application/ld+json" in error for error in self.validate())
+        )
 
     def test_same_host_absolute_link_is_internal(self) -> None:
         index = self.site_dir / "index.html"
