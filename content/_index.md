@@ -63,7 +63,7 @@ project development.
 **Other work**
 
 - [George Floyd protest maps published by USA Today](https://www.usatoday.com/story/news/politics/2020/06/10/george-floyd-black-lives-matter-police-protests-widespread-peaceful/5325737002/)
-- [World Bank Beirut Rapid Damage and Needs Assessment](https://www.worldbank.org/en/country/lebanon/publication/beirut-rapid-damage-and-needs-assessment-rdna---august-2020)
+- [World Bank Beirut Rapid Damage and Needs Assessment](https://openknowledge.worldbank.org/entities/publication/248269b7-2a37-5768-8611-61baea6f92f9)
 - [The first version of CARTOframes](https://carto.com/blog/cartoframes-python-interface-carto/)
 
 See the [archive of talks and presentations](/presentations.html) for more.
